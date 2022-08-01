@@ -1,9 +1,2 @@
-﻿  Light.cpp
-  Main.cpp
-C:\Users\yftac\source\repos\Computer-Graphics\ComputerGraphicsProject2\Computer-Graphics\ComputerGraphicsProject\ComputerGraphicsProject\Main.cpp(110,25): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-C:\Users\yftac\source\repos\Computer-Graphics\ComputerGraphicsProject2\Computer-Graphics\ComputerGraphicsProject\ComputerGraphicsProject\Main.cpp(111,26): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  Menu.cpp
-C:\Users\yftac\source\repos\Computer-Graphics\ComputerGraphicsProject2\Computer-Graphics\ComputerGraphicsProject\ComputerGraphicsProject\Menu.cpp(43,26): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  Robot.cpp
-  Generating Code...
-  ComputerGraphicsProject.vcxproj -> C:\Users\yftac\source\repos\Computer-Graphics\ComputerGraphicsProject2\Computer-Graphics\ComputerGraphicsProject\x64\Debug\ComputerGraphicsProject.exe
+﻿  Robot.cpp
+  ComputerGraphicsProject.vcxproj -> C:\Users\yftac\source\repos\Computer-Graphics\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe

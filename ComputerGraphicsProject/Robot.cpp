@@ -49,11 +49,12 @@ void Robot::draw(bool robotView) {
 		glPopMatrix();
 	}
 
-	glPopMatrix();
 	glPushMatrix();
-	glTranslated(0, 10, -4.5);
+	glTranslated(4.6, 10, 0);
 	drawLeftHand();
 	glPopMatrix();
+	glPopMatrix();
+	
 
 }
 
