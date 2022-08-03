@@ -14,7 +14,7 @@ public:
 	void draw(bool);
 	void moveHead(int, RobotCamera*, float);
 	void move(unsigned char, glm::vec3, float);
-	void drawLeftHand();
+	void drawHand(int shoulderAngle, int elbowAngle, int wristAngle);
 	float getPitch();
 	float getYaw();
 	~Robot() = default;

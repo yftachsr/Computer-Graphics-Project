@@ -1,5 +1,10 @@
 #include "Robot.h"
 
+int shoulderAngle = 0;
+int elbowAngle = 0;
+int wristAngle = 0;
+
+
 Robot::Robot(glm::vec3 viewDirection) {
 	pos = glm::vec3(0.0f, 0.0f, 0.0f);
 	this->viewDirection = viewDirection;
@@ -15,6 +20,8 @@ void Robot::draw(bool robotView) {
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess * 128.0f);
+
+
 
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
@@ -51,18 +58,39 @@ void Robot::draw(bool robotView) {
 
 	glPushMatrix();
 	glTranslated(4.6, 10, 0);
-	drawLeftHand();
+	drawHand(0, 0, 0);
+	glTranslated(-9.2, 0, 0);
+	drawHand(shoulderAngle, elbowAngle, wristAngle);
 	glPopMatrix();
 	glPopMatrix();
-	
 
 }
 
-void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime)
-{
+void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime){
+	int addAngle = 0;
 	if (part == 7)
 		moveHead(key, cam, deltaTime);
+	else {
+		if (key == GLUT_KEY_UP)
+			addAngle -= 30;
 
+		else if (key == GLUT_KEY_DOWN)
+			addAngle += 30;
+		
+		if (part == 4) {
+			if ((elbowAngle > -150 || addAngle > 0) && (elbowAngle < 150 || addAngle < 0))
+			elbowAngle += addAngle;
+		}
+
+		else if (part == 5) {
+			if ((shoulderAngle > -180||addAngle>0) && (shoulderAngle<0||addAngle<0))
+				shoulderAngle += addAngle;
+		}
+
+		else if (part == 6) {
+				wristAngle += addAngle;
+		}
+	}
 }
 
 void Robot::drawLegs() {
@@ -154,28 +182,27 @@ void Robot::move(unsigned char key, glm::vec3 direction, float deltaTime) {
 
 }
 
-void Robot::drawLeftHand() {
-
+void Robot::drawHand(int shoulderAngle,int elbowAngle,int wristAngle) {
 	glPushMatrix();
 	glRotated(90, 1, 0, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
 	glutSolidSphere(1, 100, 100);
+	glRotated(shoulderAngle, 0, 1, 0);
 	glTranslated(0, 0, 0.5);
 	glColor3f(1.0f, 1.0f, 0.0f);
 	gluCylinder(gluNewQuadric(), 0.9, 0.9, 2, 100, 100);
 	glTranslated(0, 0, 2);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glutSolidSphere(1, 100, 100);
+	glRotated(elbowAngle, 0, 1, 0);
 	glTranslated(0, 0, 0.5);
 	glColor3f(0.5f, 1.0f, 0.8f);
 	gluCylinder(gluNewQuadric(), 0.9, 0.9, 2, 100, 100);
 	glTranslated(0, 0, 2.5);
+	glRotatef(wristAngle, 0, 0, 1);
 	glScaled(0.7, 0.7, 0.7);
 	glColor3f(0.5f, 0.0f, 0.8f);
 	glutSolidDodecahedron();
-	//glutSolidSphere(1, 100, 100);
-	//glTranslated(0, 0, 3);
-
 	glPopMatrix();
 }
 

@@ -264,7 +264,7 @@ void Scene::moveObjects(int key) {
 
 void Scene::specialKeys(int key, int x, int y) {
 
-	bipbop->moveOrgan(organNum, key, robotCam, deltaTime);
+	bipbop->moveOrgan(organNum, key,robotCam,deltaTime);
 
 }
 
