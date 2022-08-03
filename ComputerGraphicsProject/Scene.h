@@ -43,7 +43,6 @@ public:
 	void moveObjects(int);
 	void changePov();
 	void testingObjects();
-	void printToScreen(int, int, std::string);
 	~Scene();
 	Robot* bipbop;
 	Menu* menu;

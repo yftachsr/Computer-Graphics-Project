@@ -94,7 +94,6 @@
   <ItemGroup>
     <Image Include="woodenTexture.jpg" />
     <Image Include="..\..\..\..\..\Downloads\floorTexture.jpg" />
-    <Image Include="..\..\..\..\..\Downloads\wallTexrue.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">

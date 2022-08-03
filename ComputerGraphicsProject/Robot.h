@@ -19,6 +19,7 @@ public:
 	float getYaw();
 	~Robot() = default;
 	void moveOrgan(int part, int, RobotCamera*, float);
+	float angle = 0.0f;
 
 private:
 	float pitch = 0.0f, yaw = 0.0f, rotationAngle = 0.0f;

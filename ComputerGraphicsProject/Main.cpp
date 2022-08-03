@@ -163,7 +163,10 @@ void Scene::display(void) {
 	drawAxis();
 	testingObjects();
 
+	glPushMatrix();
+	glRotated(bipbop->angle, 0, 1, 0);
 	bipbop->draw(robotView);
+	glPopMatrix();
 
 	glFlush();
 	glutSwapBuffers();

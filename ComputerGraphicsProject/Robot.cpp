@@ -26,7 +26,6 @@ void Robot::draw(bool robotView) {
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
 	glRotatef(90, 0, 1, 0);
-	//glRotatef(rotationAngle, 0, 1, 0);
 	glPushMatrix();
 
 	//Body
@@ -165,6 +164,7 @@ void Robot::move(unsigned char key, glm::vec3 direction, float deltaTime) {
 	glm::vec3 normal = glm::cross(upVector, direction);
 	normal = glm::normalize(normal);
 	float speed = 0.1f * deltaTime;
+	angle = acos(dot(glm::vec3(1, 0, 0), glm::normalize(direction)));
 
 	if (key == 'w' || key == 'W') {
 		pos.x += speed * direction.x;
