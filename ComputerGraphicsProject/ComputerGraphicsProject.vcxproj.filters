@@ -40,6 +40,7 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>Source files\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="Refrigerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -83,6 +84,9 @@
     </ClInclude>
     <ClInclude Include="stb_image.h">
       <Filter>Source files\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="Refrigerator.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -67,10 +67,10 @@ void Table::drawTable(int x, int y, int z, bool tea){
 
 void Table::drawTeapot(float x, float y, float z) {
 
-	GLfloat specular[] = { 0.508273f, 0.508273f, 0.508273f, 1.0f };
-	GLfloat diffuse[] = { 0.50754f, 0.50754f, 0.50754f, 1.0f };
-	GLfloat ambient[] = { 0.19225f , 0.19225f, 0.19225f, 1.0f };
-	GLfloat shininess = 0.4f;
+	GLfloat specular[] = { 0.774597f, 0.774597f, 0.774597f, 1.0f };
+	GLfloat diffuse[] = { 0.4f, 0.4f, 0.4f, 1.0f };
+	GLfloat ambient[] = { 0.25f , 0.25f,0.25f, 1.0f };
+	GLfloat shininess = 0.6f;
 	glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
@@ -84,7 +84,6 @@ void Table::drawTeapot(float x, float y, float z) {
 }
 
 Table::~Table() {
-	//delete quadric;
 	delete texture;
 }
 

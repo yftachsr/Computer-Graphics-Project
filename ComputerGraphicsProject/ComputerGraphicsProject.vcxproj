@@ -149,6 +149,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Objects.cpp" />
+    <ClCompile Include="Refrigerator.cpp" />
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="RobotCamera.cpp" />
     <ClCompile Include="Room.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Objects.h" />
+    <ClInclude Include="Refrigerator.h" />
     <ClInclude Include="Robot.h" />
     <ClInclude Include="RobotCamera.h" />
     <ClInclude Include="Room.h" />

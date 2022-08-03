@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿  Main.cpp
 C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Main.cpp(110,25): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
 C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Main.cpp(111,26): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
@@ -5,3 +6,7 @@ C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProjec
 C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Robot.cpp(202,12): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
   Generating Code...
   ComputerGraphicsProject.vcxproj -> C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe
+=======
+﻿  Objects.cpp
+  ComputerGraphicsProject.vcxproj -> C:\Users\yftac\source\repos\Computer-Graphics\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe
+>>>>>>> Stashed changes
