@@ -70,7 +70,6 @@ void specialKeysCallback(int key, int x, int y) {
 
 Scene::Scene(int argc, char** argv) {
 
-
 	glutInit(&argc, argv);										//
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);	//
 	glutInitWindowSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);			//
@@ -79,7 +78,7 @@ Scene::Scene(int argc, char** argv) {
 	glClearColor(1.0, 1.0, 1.0, 1.0);							//
 
 	cam = new Camera(glm::vec3(40.0f, 30.0f, -40.0f), glm::vec3(-1.0f, -1.0f, 1.0f));
-	robotCam = new RobotCamera(glm::vec3(0.0f, 15.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	robotCam = new RobotCamera(glm::vec3(0.0f, 15.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	floor = new Floor(16, 16, 8, 8);
 	light = new Light(GL_LIGHT0, 0.0f, 40.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 	objects = new Objects();
@@ -165,31 +164,9 @@ void Scene::display(void) {
 	testingObjects();
 
 	bipbop->draw(robotView);
-	//std::cout << "(" << cam->viewDirection.x << "," << cam->viewDirection.y << "," << cam->viewDirection.z << ")" << std::endl;
-	std::string s = "g" + std::to_string(light->getTarget().x);
-	std::string lightTraget = "Light target: (" + std::to_string(light->getTarget().x)
-		+ "," + std::to_string(light->getTarget().y) + "," + std::to_string(light->getTarget().z) + ")";
-	std::string lightPos = "Light position: (" + std::to_string(light->getPos().x)
-		+ "," + std::to_string(light->getPos().y) + "," + std::to_string(light->getPos().z) + ")";
-	std::string lightCutoff = "Light cutoff " + std::to_string(light->getCutoff());
-
-	printToScreen(30, 35, lightPos);
-	printToScreen(30, 30, lightTraget);
-	printToScreen(30, 25, lightCutoff);
-
 
 	glFlush();
 	glutSwapBuffers();
-
-}
-
-void Scene::printToScreen(int posX, int posY, std::string text) {
-
-	glMatrixMode(GL_PROJECTION);
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glRasterPos2d(posX, posY);
-	for (int i = 0; i < text.length(); i++)
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, text[i]);
 
 }
 

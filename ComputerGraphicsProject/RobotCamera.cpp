@@ -32,4 +32,7 @@ void RobotCamera::move(unsigned char key,glm::vec3 moveDirection, float deltaTim
 
 	else if (key == 'a' || key == 'A')
 		pos += speed * normal;
+
+	
+
 }

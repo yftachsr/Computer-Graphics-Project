@@ -40,7 +40,9 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>Source files\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="Refrigerator.cpp" />
+    <ClCompile Include="Refrigerator.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
