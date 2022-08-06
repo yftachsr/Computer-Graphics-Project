@@ -165,9 +165,6 @@ void Scene::display(void) {
 	//std::cout << std::to_string(cam->xoffset) << std::endl;
 	glPushMatrix();
 	glTranslated(bipbop->getPos().x, bipbop->getPos().y, bipbop->getPos().z);
-	//if(prevRotationAngle != currentRotationAngle)
-		//robotRotationAngle += currentRotationAngle;
-	//prevRotationAngle = currentRotationAngle;
 	glRotated(robotRotationAngle, 0, 1, 0);
 	glTranslated(-bipbop->getPos().x, -bipbop->getPos().y, -bipbop->getPos().z);
 	bipbop->draw(robotView);

@@ -21,7 +21,6 @@ private:
 	Light* light;
 	Objects* objects;
 	Room* room;
-
 	double ratio = 1;
 	int screenWidth = WINDOW_SIZE_X, screenHeight = WINDOW_SIZE_Y;
 	float deltaTime = 0, lastFrame = 0;

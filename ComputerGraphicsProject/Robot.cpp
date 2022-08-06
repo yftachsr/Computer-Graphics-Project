@@ -185,13 +185,14 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam,
 				rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
 			else if (sign(crossNormal.y) == -1 || crossNormal.y != 0)
 				rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
-			
+			std::cout << "cross (" << std::to_string(crossNormal.x) << "," <<
+				std::to_string(crossNormal.y) << "," << std::to_string(crossNormal.z) << std::endl;
 			cam->viewDirection = newViewDirection;
 			cam->viewDirection.y = yvalue;
 		}
 		else
 			rotationAngle = 0;
-
+		
 	}
 	else if (key == 's' || key == 'S') {
 		pos.x -= speed * moveDirection.x;
@@ -201,6 +202,7 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam,
 			newViewDirection = glm::normalize(newViewDirection);
 			glm::vec3 crossNormal = glm::cross(prevViewDirection, newViewDirection);
 			crossNormal = glm::normalize(crossNormal);
+
 			if (sign(crossNormal.y) == 1)
 				rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
 			else if (sign(crossNormal.y) == -1 || crossNormal.y != 0)
@@ -219,6 +221,7 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam,
 			newViewDirection = glm::normalize(newViewDirection);
 			glm::vec3 crossNormal = glm::cross(prevViewDirection, newViewDirection);
 			crossNormal = glm::normalize(crossNormal);
+
 			if (sign(crossNormal.y) == 1)
 				rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
 			else if (sign(crossNormal.y) == -1 || crossNormal.y != 0)
@@ -226,6 +229,7 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam,
 			
 			cam->viewDirection = newViewDirection;
 			cam->viewDirection.y = yvalue;
+
 		}
 		else
 			rotationAngle = 0;
@@ -244,6 +248,7 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam,
 
 			cam->viewDirection = newViewDirection;
 			cam->viewDirection.y = yvalue;
+
 		}
 		else
 			rotationAngle = 0;
