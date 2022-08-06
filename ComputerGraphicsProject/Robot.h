@@ -13,7 +13,7 @@ public:
 	Robot(glm::vec3);
 	void draw(bool);
 	void moveHead(int, RobotCamera*, float);
-	void move(unsigned char, glm::vec3, RobotCamera*, float*, float);
+	void move(bool,unsigned char, glm::vec3, RobotCamera*, float*, float);
 	void drawHand(int shoulderAngle, int elbowAngle, int wristAngle);
 	float getPitch();
 	float getYaw();
@@ -34,6 +34,8 @@ private:
 	void drawLegs();
 	void drawHead(float, float);
 	void updateIsSameDirection(unsigned char);
+	void move(unsigned char, glm::vec3, RobotCamera*, float*, float);
+	void move(unsigned char, glm::vec3, float);
 	int sign(float);
 };
 

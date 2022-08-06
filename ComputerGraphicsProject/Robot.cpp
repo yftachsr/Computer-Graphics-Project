@@ -66,6 +66,15 @@ void Robot::draw(bool robotView) {
 
 }
 
+void Robot::move(bool robotView, unsigned char key, glm::vec3 moveDirection, RobotCamera* cam,
+	float* angle, float deltaTime) {
+
+	if (!robotView)
+		move(key, moveDirection, cam, angle, deltaTime);
+	else
+		move(key, moveDirection, deltaTime);
+}
+
 void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime) {
 	int addAngle = 0;
 	if (part == 7)
@@ -156,7 +165,7 @@ void Robot::moveHead(int key, RobotCamera* cam, float deltaTime) {
 	else if (yaw <= -MAX_YAW_ANGLE)
 		yaw = -MAX_YAW_ANGLE;
 
-	cam->lookAround(yaw, pitch);
+	cam->lookAround(yaw, pitch, rotationAngle);
 }
 
 void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam, 
@@ -257,6 +266,31 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam,
 	lastKey = key;
 	prevMoveDirection = moveDirection;
 	*angle += rotationAngle;
+}
+
+void Robot::move(unsigned char key, glm::vec3 moveDirection, float deltaTime) {
+
+	glm::vec3 upVector = glm::vec3(0, 1, 0);
+	glm::vec3 normal = glm::cross(upVector, moveDirection);
+	normal = glm::normalize(normal);
+	float speed = 0.05f * deltaTime;
+
+	if (key == 'w' || key == 'W') {
+		pos.x += speed * moveDirection.x;
+		pos.z += speed * moveDirection.z;
+
+	}
+	else if (key == 's' || key == 'S') {
+		pos.x -= speed * moveDirection.x;
+		pos.z -= speed * moveDirection.z;
+		
+	}
+	else if (key == 'd' || key == 'D') {
+		pos -= speed * normal;
+	}
+	else if (key == 'a' || key == 'A') 
+		pos += speed * normal;
+		
 }
 
 void Robot::drawHand(int shoulderAngle, int elbowAngle, int wristAngle) {

@@ -1,3 +1,7 @@
-﻿  Robot.cpp
-C:\Users\yftac\source\repos\Computer-Graphics-Project\ComputerGraphicsProject\Robot.cpp(274,12): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+﻿  Main.cpp
+C:\Users\yftac\source\repos\Computer-Graphics-Project\ComputerGraphicsProject\Main.cpp(107,25): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\yftac\source\repos\Computer-Graphics-Project\ComputerGraphicsProject\Main.cpp(108,26): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  Robot.cpp
+C:\Users\yftac\source\repos\Computer-Graphics-Project\ComputerGraphicsProject\Robot.cpp(313,12): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+  Generating Code...
   ComputerGraphicsProject.vcxproj -> C:\Users\yftac\source\repos\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe

@@ -233,11 +233,11 @@ void Scene::moveObjects(int key) {
 	case 11:
 		moveCam = false;
 		if (!robotView) { // move the robot reletive to the main camera
-			bipbop->move(key, cam->viewDirection, robotCam, &robotRotationAngle, deltaTime);
+			bipbop->move(robotView, key, cam->viewDirection, robotCam, &robotRotationAngle, deltaTime);
 			robotCam->move(key, cam->viewDirection, deltaTime);
 		}
 		else { // move the robot reletive to the robot camera
-			bipbop->move(key, robotCam->viewDirection, robotCam, &robotRotationAngle, deltaTime);
+			bipbop->move(robotView, key, robotCam->viewDirection, robotCam, &robotRotationAngle, deltaTime);
 			robotCam->move(key, robotCam->viewDirection, deltaTime);
 		}
 	}
