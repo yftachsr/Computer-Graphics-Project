@@ -203,7 +203,7 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam, f
 		newViewDirection = glm::vec3(normal.x, 0, normal.z);
 		if (key != lastKey || prevMoveDirection != moveDirection) {
 			newViewDirection = glm::normalize(newViewDirection);
-			rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
 			cam->viewDirection = newViewDirection;
 		}
 	}

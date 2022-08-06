@@ -14,7 +14,7 @@ Room::Room(float gridSizeX, float gridSizeY, float squareSizeX, float squareSize
 			walls[i] = new Wall(sizeY, sizeY / 2.0f, "wallTexture.jpg");
 	}
 	
-	walls[NUM_OF_WALLS - 1] = new Wall(sizeX, sizeY, "wallTexture.jpg");
+	walls[NUM_OF_WALLS - 1] = new Wall(sizeX, sizeY, "t.jpg");
 	
 }
 

@@ -31,4 +31,3 @@ private:
 	void drawLegs();
 	void drawHead(float, float);
 };
-

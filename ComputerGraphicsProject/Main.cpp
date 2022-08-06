@@ -83,7 +83,7 @@ Scene::Scene(int argc, char** argv) {
 	objects = new Objects();
 
 	bipbop = new Robot(robotCam->viewDirection);
-	room = new Room(13.0f, 13.0f, 8.0f, 8.0f);
+	room = new Room(8.0f, 8.0f, 15.0f, 15.0f);
 
 	prevCamPos = cam->pos;
 	prevCamDiraction = cam->viewDirection;

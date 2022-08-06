@@ -93,7 +93,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="woodenTexture.jpg" />
-    <Image Include="..\..\..\..\..\Downloads\floorTexture.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
