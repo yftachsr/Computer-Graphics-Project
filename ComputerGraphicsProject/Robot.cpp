@@ -25,6 +25,7 @@ void Robot::draw(bool robotView) {
 
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
+
 	glRotatef(90, 0, 1, 0);
 	glPushMatrix();
 
@@ -158,28 +159,71 @@ void Robot::moveHead(int key, RobotCamera* cam, float deltaTime) {
 	cam->lookAround(yaw, pitch);
 }
 
-void Robot::move(unsigned char key, glm::vec3 direction, float deltaTime) {
+void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam, float deltaTime) {
 
 	glm::vec3 upVector = glm::vec3(0, 1, 0);
-	glm::vec3 normal = glm::cross(upVector, direction);
+	glm::vec3 normal = glm::cross(upVector, moveDirection);
 	normal = glm::normalize(normal);
-	float speed = 0.1f * deltaTime;
-	angle = acos(dot(glm::vec3(1, 0, 0), glm::normalize(direction)));
-
+	float speed = 0.05f * deltaTime;
+	prevViewDirection = cam->viewDirection;
+	prevViewDirection.y = 0;
+	prevViewDirection = glm::normalize(prevViewDirection);
+	glm::vec3 newViewDirection;
 	if (key == 'w' || key == 'W') {
-		pos.x += speed * direction.x;
-		pos.z += speed * direction.z;
+		pos.x += speed * moveDirection.x;
+		pos.z += speed * moveDirection.z;
+		newViewDirection = glm::vec3(moveDirection.x, 0, moveDirection.z);
+		if (key != lastKey || prevMoveDirection != moveDirection) {
+			newViewDirection = glm::normalize(newViewDirection);
+			rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			cam->viewDirection = newViewDirection;
+		}
 	}
 	else if (key == 's' || key == 'S') {
-		pos.x -= speed * direction.x;
-		pos.z -= speed * direction.z;
+		pos.x -= speed * moveDirection.x;
+		pos.z -= speed * moveDirection.z;
+		newViewDirection = -glm::vec3(moveDirection.x, 0, moveDirection.z);
+		if (key != lastKey || prevMoveDirection != moveDirection) {
+			newViewDirection = glm::normalize(newViewDirection);
+			rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			cam->viewDirection = newViewDirection;
+		}
 	}
-	else if (key == 'd' || key == 'D')
+	else if (key == 'd' || key == 'D') {
 		pos -= speed * normal;
-
-	else if (key == 'a' || key == 'A')
+		newViewDirection = -glm::vec3(normal.x, 0, normal.z);
+		if (key != lastKey || prevMoveDirection != moveDirection) {
+			newViewDirection = glm::normalize(newViewDirection);
+			rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			cam->viewDirection = newViewDirection;
+		}
+	}
+	else if (key == 'a' || key == 'A') {
 		pos += speed * normal;
-
+		newViewDirection = glm::vec3(normal.x, 0, normal.z);
+		if (key != lastKey || prevMoveDirection != moveDirection) {
+			newViewDirection = glm::normalize(newViewDirection);
+			rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			cam->viewDirection = newViewDirection;
+		}
+	}
+	/*if (key != lastKey) {
+		newViewDirection = glm::normalize(newViewDirection);
+		rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+		cam->viewDirection = newViewDirection;
+		std::cout << "old (" << std::to_string(prevViewDirection.x) <<
+			"," << std::to_string(prevViewDirection.z) << std::endl;
+		std::cout << "new (" << std::to_string(newViewDirection.x) <<
+			"," << std::to_string(newViewDirection.z) << std::endl;
+		std::cout << std::to_string(rotationAngle) << std::endl;
+	}*/
+	std::cout << "old (" << std::to_string(prevViewDirection.x) <<
+		"," << std::to_string(prevViewDirection.z) << std::endl;
+	std::cout << "new (" << std::to_string(newViewDirection.x) <<
+		"," << std::to_string(newViewDirection.z) << std::endl;
+	std::cout << std::to_string(rotationAngle) << std::endl;
+	lastKey = key;
+	prevMoveDirection = moveDirection;
 }
 
 void Robot::drawHand(int shoulderAngle,int elbowAngle,int wristAngle) {
@@ -212,5 +256,13 @@ float Robot::getPitch() {
 
 float Robot::getYaw() {
 	return yaw;
+}
+
+float Robot::getRotationAngle() {
+	return rotationAngle;
+}
+
+glm::vec3 Robot::getPos() {
+	return pos;
 }
 

@@ -15,7 +15,7 @@ void Light::draw() {
 
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
-	fixDirection();
+	//fixDirection();
 
 	glDisable(GL_LIGHTING);
 	glColor3f(1.0f, 1.0f, 0.26f);

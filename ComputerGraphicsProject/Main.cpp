@@ -5,11 +5,11 @@
 Scene* currentInstance;
 
 float ambientValues[] = { 0.5,0.5,0.5,1 };
-float diffuseValues[] = { 0.5,0.5,0.5,1 };
+float diffuseValues[] = { 1.5,1.5,1.5,1 };
 int organNum = 7, objectNum = 10;
 
 void menuHandler(int value) {
-	std::cout << std::to_string(value) << std::endl;
+
 	if (value == 0) {
 		exit(0);
 	}
@@ -28,7 +28,6 @@ void menuHandler(int value) {
 	}
 
 	else if (value == 3 || (value >= 8 && value <= 11)) {
-		std::cout << std::to_string(value) << std::endl;
 		objectNum = value;
 	}
 
@@ -89,7 +88,6 @@ Scene::Scene(int argc, char** argv) {
 	prevCamPos = cam->pos;
 	prevCamDiraction = cam->viewDirection;
 
-	bipbop = new Robot(robotCam->viewDirection);
 	menu = new Menu(menuHandler);
 
 
@@ -162,9 +160,15 @@ void Scene::display(void) {
 	room->draw();
 	drawAxis();
 	testingObjects();
-
+	float currentRotationAngle = bipbop->getRotationAngle();
+	//std::cout << std::to_string(cam->xoffset) << std::endl;
 	glPushMatrix();
-	glRotated(bipbop->angle, 0, 1, 0);
+	glTranslated(bipbop->getPos().x, bipbop->getPos().y, bipbop->getPos().z);
+	if(prevRotationAngle != currentRotationAngle)
+		robotRotationAngle += currentRotationAngle;
+	prevRotationAngle = currentRotationAngle;
+	glRotated(robotRotationAngle, 0, 1, 0);
+	glTranslated(-bipbop->getPos().x, -bipbop->getPos().y, -bipbop->getPos().z);
 	bipbop->draw(robotView);
 	glPopMatrix();
 
@@ -199,7 +203,6 @@ void Scene::keyPress(unsigned char key, int x, int y) {
 	else if (key == '=')
 		light->setCutoff(light->getCutoff() + 3.0f);
 
-	std::cout << std::to_string(menu->ambientInput) << std::endl;
 	if (menu->ambientInput)
 		menu->keyPress(key, ambientValues);
 	else {
@@ -232,11 +235,11 @@ void Scene::moveObjects(int key) {
 	case 11:
 		moveCam = false;
 		if (!robotView) { // move the robot reletive to the main camera
-			bipbop->move(key, cam->viewDirection, deltaTime);
+			bipbop->move(key, cam->viewDirection, robotCam, deltaTime);
 			robotCam->move(key, cam->viewDirection, deltaTime);
 		}
 		else { // move the robot reletive to the robot camera
-			bipbop->move(key, robotCam->viewDirection, deltaTime);
+			bipbop->move(key, robotCam->viewDirection, robotCam, deltaTime);
 			robotCam->move(key, robotCam->viewDirection, deltaTime);
 		}
 	}

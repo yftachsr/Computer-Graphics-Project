@@ -10,8 +10,8 @@
 #include "Menu.h"
 #include <math.h>
 
-#define WINDOW_SIZE_X 1000
-#define WINDOW_SIZE_Y 850
+#define WINDOW_SIZE_X 800
+#define WINDOW_SIZE_Y 600
 
 class Scene {
 private:
@@ -28,6 +28,7 @@ private:
 	int currentFrame = 0;
 	bool firstMouse = true, moveCam = true, robotView = false, changeLightPos = true;
 	glm::vec3 prevCamPos, prevCamDiraction;
+	float robotRotationAngle = 0.0f, prevRotationAngle;
 public:
 	Scene(int argc, char** argv);
 	void display();

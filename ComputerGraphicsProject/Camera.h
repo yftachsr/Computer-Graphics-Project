@@ -17,7 +17,7 @@ public:
 	//void rotate(float, float);
 	glm::vec3 viewDirection, pos;
 	int lastX, lastY;
-
+	float xoffset;
 	~Camera() = default;
 
 private:

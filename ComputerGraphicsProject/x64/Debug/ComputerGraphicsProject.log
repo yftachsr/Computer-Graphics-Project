@@ -1,6 +1,4 @@
-﻿  Light.cpp
-  Main.cpp
-C:\Users\yftac\source\repos\Computer-Graphics\Computer-Graphics-Project\ComputerGraphicsProject\Main.cpp(109,25): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-C:\Users\yftac\source\repos\Computer-Graphics\Computer-Graphics-Project\ComputerGraphicsProject\Main.cpp(110,26): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  Generating Code...
-  ComputerGraphicsProject.vcxproj -> C:\Users\yftac\source\repos\Computer-Graphics\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe
+﻿  Main.cpp
+C:\Users\yftac\source\repos\Computer-Graphics-Project\ComputerGraphicsProject\Main.cpp(107,25): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\yftac\source\repos\Computer-Graphics-Project\ComputerGraphicsProject\Main.cpp(108,26): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  ComputerGraphicsProject.vcxproj -> C:\Users\yftac\source\repos\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe

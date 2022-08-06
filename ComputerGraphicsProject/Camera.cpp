@@ -45,7 +45,7 @@ void Camera::lookAround(int x, int y, bool* firstMouse, int screenCenterX, int s
 		*firstMouse = false;
 	}*/
 
-	float xoffset = x - lastX;
+	xoffset = x - lastX;
 	float yoffset = lastY - y;
 	lastX = x;
 	lastY = y;
