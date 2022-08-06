@@ -1,2 +1,6 @@
 ﻿  Objects.cpp
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Objects.cpp(8,44): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Objects.cpp(9,44): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Objects.cpp(10,44): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Objects.cpp(11,44): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
   ComputerGraphicsProject.vcxproj -> C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe
