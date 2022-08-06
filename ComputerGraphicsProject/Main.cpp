@@ -7,6 +7,7 @@ Scene* currentInstance;
 float ambientValues[] = { 0.5,0.5,0.5,1 };
 float diffuseValues[] = { 1.5,1.5,1.5,1 };
 int organNum = 7, objectNum = 10;
+bool drawMouse = false;
 
 void menuHandler(int value) {
 
@@ -37,6 +38,13 @@ void menuHandler(int value) {
 	}
 
 	glutPostRedisplay();
+}
+
+void menuOpen(int status) {
+	if (status == GLUT_MENU_IN_USE)
+		drawMouse = true;
+	else 
+		drawMouse = false;
 }
 
 void displayCallback() {
@@ -82,14 +90,14 @@ Scene::Scene(int argc, char** argv) {
 	light = new Light(GL_LIGHT0, 0.0f, 40.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 	objects = new Objects();
 
-	bipbop = new Robot(robotCam->viewDirection);
+	bipbop = new Robot();
 	room = new Room(6.0f, 6.0f, 15.0f, 15.0f);
 
 	prevCamPos = cam->pos;
 	prevCamDiraction = cam->viewDirection;
 
 	menu = new Menu(menuHandler);
-
+	
 
 	::currentInstance = this;
 	registerCallbacks();
@@ -138,7 +146,6 @@ void Scene::display(void) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//glutSetCursor(GLUT_CURSOR_NONE);
 	float amientIntensity = 0.2f;
 	//float ambientLight1[] = { amientIntensity, amientIntensity, amientIntensity, 1.0f };
 	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight1);
@@ -149,24 +156,19 @@ void Scene::display(void) {
 	else
 		gluLookAt(robotCam->pos.x, robotCam->pos.y, robotCam->pos.z
 			, robotCam->pos.x + robotCam->viewDirection.x, robotCam->pos.y + robotCam->viewDirection.y, robotCam->pos.z + robotCam->viewDirection.z, 0, 1, 0);
-
-	//glutSetCursor(GLUT_CURSOR_NONE);
+	if(!drawMouse)
+		glutSetCursor(GLUT_CURSOR_NONE);
+	
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientValues);
 
 	menu->drawTextBox();
 
 	light->draw();
-	//floor->draw();
 	room->draw();
 	drawAxis();
 	testingObjects();
-	//float currentRotationAngle = bipbop->getRotationAngle();
 	
-	//std::cout << std::to_string(cam->xoffset) << std::endl;
 	glPushMatrix();
-	glTranslated(bipbop->getPos().x, bipbop->getPos().y, bipbop->getPos().z);
-	glRotated(robotRotationAngle, 0, 1, 0);
-	glTranslated(-bipbop->getPos().x, -bipbop->getPos().y, -bipbop->getPos().z);
 	bipbop->draw(robotView);
 	glPopMatrix();
 
@@ -233,11 +235,11 @@ void Scene::moveObjects(int key) {
 	case 11:
 		moveCam = false;
 		if (!robotView) { // move the robot reletive to the main camera
-			bipbop->move(robotView, key, cam->viewDirection, robotCam, &robotRotationAngle, deltaTime);
+			bipbop->move(key, cam->viewDirection, deltaTime);
 			robotCam->move(key, cam->viewDirection, deltaTime);
 		}
 		else { // move the robot reletive to the robot camera
-			bipbop->move(robotView, key, robotCam->viewDirection, robotCam, &robotRotationAngle, deltaTime);
+			bipbop->move(key, robotCam->viewDirection, deltaTime);
 			robotCam->move(key, robotCam->viewDirection, deltaTime);
 		}
 	}
@@ -298,6 +300,7 @@ void Scene::registerCallbacks() {
 	glutPassiveMotionFunc(passiveMouseMotionCallback);
 	glutSpecialFunc(specialKeysCallback);
 	glutIdleFunc(idleCallback);
+	glutMenuStateFunc(menuOpen);
 
 
 }

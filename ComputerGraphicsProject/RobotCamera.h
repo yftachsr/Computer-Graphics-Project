@@ -4,6 +4,8 @@
 
 class RobotCamera : public Camera
 {
+private:
+	float robotCamRotation = 0.0f;
 public:
 	RobotCamera(glm::vec3,glm::vec3);
 	void lookAround(float, float,float);

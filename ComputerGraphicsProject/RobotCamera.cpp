@@ -4,11 +4,11 @@ RobotCamera::RobotCamera(glm::vec3 pos, glm::vec3 viewDirection)
 	: Camera(pos,viewDirection) { }
 
 void RobotCamera::lookAround(float robotYaw, float robotPitch,float rotationAngle) {
-
+	robotCamRotation = rotationAngle;
 	glm::vec3 direction;
-	direction.x = cos(glm::radians(-robotYaw)) * cos(glm::radians(-robotPitch));
+	direction.x = cos(glm::radians(-robotYaw - robotCamRotation)) * cos(glm::radians(-robotPitch));
 	direction.y = sin(glm::radians(-robotPitch));
-	direction.z = sin(glm::radians(-robotYaw)) * cos(glm::radians(-robotPitch));
+	direction.z = sin(glm::radians(-robotYaw - robotCamRotation)) * cos(glm::radians(-robotPitch));
 	viewDirection = glm::normalize(direction);
 }
 
