@@ -22,7 +22,7 @@ void Robot::draw(bool robotView) {
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess * 128.0f);
 
 
-
+	std::cout << std::to_string(pos.x) << "," << std::to_string(pos.z) << std::endl;
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
 
@@ -274,7 +274,7 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, float deltaTime) {
 	glm::vec3 normal = glm::cross(upVector, moveDirection);
 	normal = glm::normalize(normal);
 	float speed = 0.05f * deltaTime;
-
+	std::cout << "gsfgwsrgvsrrgs" << std::endl;
 	if (key == 'w' || key == 'W') {
 		pos.x += speed * moveDirection.x;
 		pos.z += speed * moveDirection.z;
