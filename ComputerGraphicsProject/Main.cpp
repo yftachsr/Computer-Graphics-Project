@@ -160,13 +160,14 @@ void Scene::display(void) {
 	room->draw();
 	drawAxis();
 	testingObjects();
-	float currentRotationAngle = bipbop->getRotationAngle();
+	//float currentRotationAngle = bipbop->getRotationAngle();
+	
 	//std::cout << std::to_string(cam->xoffset) << std::endl;
 	glPushMatrix();
 	glTranslated(bipbop->getPos().x, bipbop->getPos().y, bipbop->getPos().z);
-	if(prevRotationAngle != currentRotationAngle)
-		robotRotationAngle += currentRotationAngle;
-	prevRotationAngle = currentRotationAngle;
+	//if(prevRotationAngle != currentRotationAngle)
+		//robotRotationAngle += currentRotationAngle;
+	//prevRotationAngle = currentRotationAngle;
 	glRotated(robotRotationAngle, 0, 1, 0);
 	glTranslated(-bipbop->getPos().x, -bipbop->getPos().y, -bipbop->getPos().z);
 	bipbop->draw(robotView);
@@ -235,11 +236,11 @@ void Scene::moveObjects(int key) {
 	case 11:
 		moveCam = false;
 		if (!robotView) { // move the robot reletive to the main camera
-			bipbop->move(key, cam->viewDirection, robotCam, deltaTime);
+			bipbop->move(key, cam->viewDirection, robotCam, &robotRotationAngle, deltaTime);
 			robotCam->move(key, cam->viewDirection, deltaTime);
 		}
 		else { // move the robot reletive to the robot camera
-			bipbop->move(key, robotCam->viewDirection, robotCam, deltaTime);
+			bipbop->move(key, robotCam->viewDirection, robotCam, &robotRotationAngle, deltaTime);
 			robotCam->move(key, robotCam->viewDirection, deltaTime);
 		}
 	}
@@ -281,6 +282,14 @@ void Scene::testingObjects() {
 
 	objects->drawObjects();
 
+}
+
+float Scene::getRotationAngle() {
+	return robotRotationAngle;
+}
+
+void Scene::setRotationAngle(float x) {
+	robotRotationAngle = x;
 }
 
 void Scene::registerCallbacks() {

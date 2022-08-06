@@ -26,7 +26,8 @@ private:
 	int screenWidth = WINDOW_SIZE_X, screenHeight = WINDOW_SIZE_Y;
 	float deltaTime = 0, lastFrame = 0;
 	int currentFrame = 0;
-	bool firstMouse = true, moveCam = true, robotView = false, changeLightPos = true;
+	bool firstMouse = true, moveCam = true, robotView = false,
+		changeLightPos = true, updateAngle = true;
 	glm::vec3 prevCamPos, prevCamDiraction;
 	float robotRotationAngle = 0.0f, prevRotationAngle;
 public:
@@ -44,6 +45,8 @@ public:
 	void moveObjects(int);
 	void changePov();
 	void testingObjects();
+	float getRotationAngle();
+	void setRotationAngle(float);
 	~Scene();
 	Robot* bipbop;
 	Menu* menu;

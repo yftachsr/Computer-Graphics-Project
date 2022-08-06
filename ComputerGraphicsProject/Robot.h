@@ -9,11 +9,11 @@
 class Robot
 {
 public:
-	
+
 	Robot(glm::vec3);
 	void draw(bool);
 	void moveHead(int, RobotCamera*, float);
-	void move(unsigned char, glm::vec3, RobotCamera*, float);
+	void move(unsigned char, glm::vec3, RobotCamera*, float*, float);
 	void drawHand(int shoulderAngle, int elbowAngle, int wristAngle);
 	float getPitch();
 	float getYaw();
@@ -21,13 +21,19 @@ public:
 	void moveOrgan(int part, int, RobotCamera*, float);
 	glm::vec3 getPos();
 	float getRotationAngle();
-	
+	bool getIsSameDirection();
+	unsigned char getLastKey();
+
 private:
 	glm::vec3 pos;
 	unsigned char lastKey;
 	float pitch = 0.0f, yaw = 0.0f, rotationAngle = 0.0f;
 	glm::vec3 viewDirection;
 	glm::vec3 prevViewDirection, prevMoveDirection;
+	bool isSameDirection = false;
 	void drawLegs();
 	void drawHead(float, float);
+	void updateIsSameDirection(unsigned char);
+	int sign(float);
 };
+

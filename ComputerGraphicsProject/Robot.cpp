@@ -66,7 +66,7 @@ void Robot::draw(bool robotView) {
 
 }
 
-void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime){
+void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime) {
 	int addAngle = 0;
 	if (part == 7)
 		moveHead(key, cam, deltaTime);
@@ -76,19 +76,19 @@ void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime){
 
 		else if (key == GLUT_KEY_DOWN)
 			addAngle += 30;
-		
+
 		if (part == 4) {
 			if ((elbowAngle > -150 || addAngle > 0) && (elbowAngle < 150 || addAngle < 0))
-			elbowAngle += addAngle;
+				elbowAngle += addAngle;
 		}
 
 		else if (part == 5) {
-			if ((shoulderAngle > -180||addAngle>0) && (shoulderAngle<0||addAngle<0))
+			if ((shoulderAngle > -180 || addAngle > 0) && (shoulderAngle < 0 || addAngle < 0))
 				shoulderAngle += addAngle;
 		}
 
 		else if (part == 6) {
-				wristAngle += addAngle;
+			wristAngle += addAngle;
 		}
 	}
 }
@@ -159,74 +159,102 @@ void Robot::moveHead(int key, RobotCamera* cam, float deltaTime) {
 	cam->lookAround(yaw, pitch);
 }
 
-void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam, float deltaTime) {
+void Robot::move(unsigned char key, glm::vec3 moveDirection, RobotCamera* cam, 
+	float* angle, float deltaTime) {
 
 	glm::vec3 upVector = glm::vec3(0, 1, 0);
 	glm::vec3 normal = glm::cross(upVector, moveDirection);
 	normal = glm::normalize(normal);
 	float speed = 0.05f * deltaTime;
+	float yvalue = cam->viewDirection.y;
 	prevViewDirection = cam->viewDirection;
 	prevViewDirection.y = 0;
 	prevViewDirection = glm::normalize(prevViewDirection);
+	updateIsSameDirection(key);
+
 	glm::vec3 newViewDirection;
 	if (key == 'w' || key == 'W') {
 		pos.x += speed * moveDirection.x;
 		pos.z += speed * moveDirection.z;
 		newViewDirection = glm::vec3(moveDirection.x, 0, moveDirection.z);
-		if (key != lastKey || prevMoveDirection != moveDirection) {
+		if (!isSameDirection || prevMoveDirection != moveDirection) {
 			newViewDirection = glm::normalize(newViewDirection);
-			rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			glm::vec3 crossNormal = glm::cross(prevViewDirection, newViewDirection);
+			crossNormal = glm::normalize(crossNormal);
+			if (sign(crossNormal.y) == 1)
+				rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			else if (sign(crossNormal.y) == -1 || crossNormal.y != 0)
+				rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			
 			cam->viewDirection = newViewDirection;
+			cam->viewDirection.y = yvalue;
 		}
+		else
+			rotationAngle = 0;
+
 	}
 	else if (key == 's' || key == 'S') {
 		pos.x -= speed * moveDirection.x;
 		pos.z -= speed * moveDirection.z;
 		newViewDirection = -glm::vec3(moveDirection.x, 0, moveDirection.z);
-		if (key != lastKey || prevMoveDirection != moveDirection) {
+		if (!isSameDirection || prevMoveDirection != moveDirection) {
 			newViewDirection = glm::normalize(newViewDirection);
-			rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			glm::vec3 crossNormal = glm::cross(prevViewDirection, newViewDirection);
+			crossNormal = glm::normalize(crossNormal);
+			if (sign(crossNormal.y) == 1)
+				rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			else if (sign(crossNormal.y) == -1 || crossNormal.y != 0)
+				rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+
 			cam->viewDirection = newViewDirection;
+			cam->viewDirection.y = yvalue;
 		}
+		else
+			rotationAngle = 0;
 	}
 	else if (key == 'd' || key == 'D') {
 		pos -= speed * normal;
 		newViewDirection = -glm::vec3(normal.x, 0, normal.z);
-		if (key != lastKey || prevMoveDirection != moveDirection) {
+		if (!isSameDirection || prevMoveDirection != moveDirection) {
 			newViewDirection = glm::normalize(newViewDirection);
-			rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			glm::vec3 crossNormal = glm::cross(prevViewDirection, newViewDirection);
+			crossNormal = glm::normalize(crossNormal);
+			if (sign(crossNormal.y) == 1)
+				rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			else if (sign(crossNormal.y) == -1 || crossNormal.y != 0)
+				rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			
 			cam->viewDirection = newViewDirection;
+			cam->viewDirection.y = yvalue;
 		}
+		else
+			rotationAngle = 0;
 	}
 	else if (key == 'a' || key == 'A') {
 		pos += speed * normal;
 		newViewDirection = glm::vec3(normal.x, 0, normal.z);
-		if (key != lastKey || prevMoveDirection != moveDirection) {
+		if (!isSameDirection || prevMoveDirection != moveDirection) {
 			newViewDirection = glm::normalize(newViewDirection);
-			rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			glm::vec3 crossNormal = glm::cross(prevViewDirection, newViewDirection);
+			crossNormal = glm::normalize(crossNormal);
+			if (sign(crossNormal.y) == 1)
+				rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+			else if (sign(crossNormal.y) == -1 || crossNormal.y != 0)
+				rotationAngle = -glm::degrees(glm::angle(prevViewDirection, newViewDirection));
+
 			cam->viewDirection = newViewDirection;
+			cam->viewDirection.y = yvalue;
 		}
+		else
+			rotationAngle = 0;
 	}
-	/*if (key != lastKey) {
-		newViewDirection = glm::normalize(newViewDirection);
-		rotationAngle = glm::degrees(glm::angle(prevViewDirection, newViewDirection));
-		cam->viewDirection = newViewDirection;
-		std::cout << "old (" << std::to_string(prevViewDirection.x) <<
-			"," << std::to_string(prevViewDirection.z) << std::endl;
-		std::cout << "new (" << std::to_string(newViewDirection.x) <<
-			"," << std::to_string(newViewDirection.z) << std::endl;
-		std::cout << std::to_string(rotationAngle) << std::endl;
-	}*/
-	std::cout << "old (" << std::to_string(prevViewDirection.x) <<
-		"," << std::to_string(prevViewDirection.z) << std::endl;
-	std::cout << "new (" << std::to_string(newViewDirection.x) <<
-		"," << std::to_string(newViewDirection.z) << std::endl;
-	std::cout << std::to_string(rotationAngle) << std::endl;
+	
 	lastKey = key;
 	prevMoveDirection = moveDirection;
+	*angle += rotationAngle;
 }
 
-void Robot::drawHand(int shoulderAngle,int elbowAngle,int wristAngle) {
+void Robot::drawHand(int shoulderAngle, int elbowAngle, int wristAngle) {
 	glPushMatrix();
 	glRotated(90, 1, 0, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
@@ -266,3 +294,25 @@ glm::vec3 Robot::getPos() {
 	return pos;
 }
 
+bool Robot::getIsSameDirection() {
+	return isSameDirection;
+}
+
+void Robot::updateIsSameDirection(unsigned char key) {
+	if (lastKey == key)
+		isSameDirection = true;
+	else
+		isSameDirection = false;
+}
+
+int Robot::sign(float x) {
+	if (x > 0)
+		return 1;
+	else if (x < 0)
+		return -1;
+	return 0;
+}
+
+unsigned char Robot::getLastKey() {
+	return lastKey;
+}
