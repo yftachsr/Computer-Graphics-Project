@@ -8,7 +8,7 @@ float ambientValues[] = { 0.5,0.5,0.5,1 };
 float diffuseValues[] = { 1.5,1.5,1.5,1 };
 int organNum = 7, objectNum = 10;
 bool drawMouse = false;
-
+bool showHelp = false;
 void menuHandler(int value) {
 
 	if (value == 0) {
@@ -19,7 +19,7 @@ void menuHandler(int value) {
 		currentInstance->menu->drawTextBool = true;
 	}
 	else if (value == 2) {
-		MessageBox(NULL, TEXT("d"), TEXT("Help"), MB_HELP);
+		showHelp = !showHelp;
 	}
 	else if (value > 3 && value < 8)
 		organNum = value;
@@ -162,6 +162,7 @@ void Scene::display(void) {
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientValues);
 
 	menu->drawTextBox();
+	menu->drawHelp(showHelp);
 
 	light->draw();
 	room->draw();
@@ -261,7 +262,6 @@ void Scene::mouseMotion(int x, int y) {
 }
 
 void Scene::passiveMouseMotion(int x, int y) {
-
 	//std::cout << "(" << cam->viewDirection.x << "," << cam->viewDirection.y << "," << cam->viewDirection.z << ")" << std::endl;
 	if (firstMouse) {
 		glutWarpPointer(screenWidth / 2, screenHeight / 2);

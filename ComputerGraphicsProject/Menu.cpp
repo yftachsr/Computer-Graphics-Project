@@ -2,6 +2,35 @@
 
 std::string str = "";
 
+void Menu::drawHelp(bool show) {
+
+	if (show){
+		glDisable(GL_LIGHTING);
+		glPushMatrix();
+		glLoadIdentity();
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glColor3f(1, 1, 1);
+		Texture* t = new Texture("helpTexture.jpg", 2);
+		t->Bind();
+		glEnable(GL_TEXTURE_2D);
+		glBegin(GL_QUADS);
+		glTexCoord2f(1,0);	glVertex2f(0.5, 0.71);
+		glTexCoord2f(1,1);	glVertex2f(0.5, -0.71);
+		glTexCoord2f(0,1);	glVertex2f(-0.5, -0.71);
+		glTexCoord2f(0,0);	glVertex2f(-0.5, 0.71);
+		glEnd();
+		glDisable(GL_TEXTURE_2D);
+		t->~Texture();
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+		glEnable(GL_LIGHTING);
+	}
+
+}
+
 void Menu::InputFromUser(float input[]) {
 	std::string cur = "";
 	int j = 0;
