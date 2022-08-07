@@ -145,7 +145,6 @@ void Scene::display(void) {
 	glEnable(GL_COLOR_MATERIAL);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
 	float amientIntensity = 0.2f;
 	//float ambientLight1[] = { amientIntensity, amientIntensity, amientIntensity, 1.0f };
 	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight1);

@@ -17,8 +17,3 @@ ComputerGraphicsProject/x64/Debug/vc143.idb
 ComputerGraphicsProject/x64/Debug/vc143.pdb
 x64/Debug/ComputerGraphicsProject.exe
 x64/Debug/ComputerGraphicsProject.pdb
-*.obj
-*.db
-*.db
-.vs/ComputerGraphicsProject/v17/Browse.VC.db
-*.db

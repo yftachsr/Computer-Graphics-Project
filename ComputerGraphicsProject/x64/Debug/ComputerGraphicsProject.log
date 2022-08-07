@@ -1,7 +1,0 @@
-﻿  Menu.cpp
-C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Menu.cpp(19,42): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Menu.cpp(20,43): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Menu.cpp(21,44): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Menu.cpp(22,43): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Menu.cpp(72,26): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  ComputerGraphicsProject.vcxproj -> C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe

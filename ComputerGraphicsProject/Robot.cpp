@@ -125,9 +125,20 @@ void Robot::drawHead(float xangle, float yangle) {
 	glutSolidCube(1);
 	glPopMatrix();
 	glPopMatrix();
+	glPushMatrix();
 	glColor3f(0.0f, 0.0f, 1.0f);
 	glScaled(2, 1.5, 1);
 	glutSolidCube(3);
+	glPopMatrix();
+	glPushMatrix();
+	glTranslated(0, 5, 0);
+	glRotated(90, 1, 0, 0);
+	glColor3f(0.7f, 0.7f, 0.7f);
+	gluCylinder(gluNewQuadric(), 0.1, 0.1, 4, 100, 100);
+	glTranslated(0, 0, -0.5);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	gluSphere(gluNewQuadric(), 0.5, 100, 100);
+	glPopMatrix();
 	glPopMatrix();
 
 }
