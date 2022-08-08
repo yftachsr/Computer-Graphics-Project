@@ -14,7 +14,7 @@ private:
 public:
 	Room(float, float, float, float);
 	~Room();
-	void draw();
+	void draw(Robot *bipbop);
 
 };
 

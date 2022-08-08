@@ -7,6 +7,6 @@
 class Objects{
 public:
 	Objects() = default;
-	void drawObjects();
+	static void drawObjects();
 };
 

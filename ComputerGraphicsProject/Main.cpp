@@ -164,7 +164,7 @@ void Scene::display(void) {
 	menu->drawHelp(showHelp);
 
 	light->draw();
-	room->draw();
+	room->draw(bipbop);
 	drawAxis();
 	testingObjects();
 	

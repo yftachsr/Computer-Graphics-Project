@@ -18,9 +18,9 @@ Room::Room(float gridSizeX, float gridSizeY, float squareSizeX, float squareSize
 	
 }
 
-void Room::draw() {
+void Room::draw(Robot * bipbop) {
 
-	floor->draw();
+	floor->reflection(bipbop);
 	glPushMatrix();
 	glColor3f(1.0f, 0.0f, 0.0f);
 	for (int i = 0; i < NUM_OF_WALLS - 1; i++) {

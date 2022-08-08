@@ -1,0 +1,27 @@
+﻿  Floor.cpp
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(6,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(7,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(8,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(9,22): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(24,65): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(24,36): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(25,70): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(25,38): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(26,71): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(26,38): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(27,70): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(27,37): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(60,50): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(77,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(78,30): warning C4018: '<': signed/unsigned mismatch
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(86,58): warning C4244: 'argument': conversion from 'unsigned int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(86,38): warning C4244: 'argument': conversion from 'unsigned int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(88,64): warning C4244: 'argument': conversion from 'unsigned int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(88,44): warning C4244: 'argument': conversion from 'unsigned int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(90,70): warning C4244: 'argument': conversion from 'unsigned int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(90,44): warning C4244: 'argument': conversion from 'unsigned int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(92,64): warning C4244: 'argument': conversion from 'unsigned int' to 'GLfloat', possible loss of data
+C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\ComputerGraphicsProject\Floor.cpp(92,38): warning C4244: 'argument': conversion from 'unsigned int' to 'GLfloat', possible loss of data
+  Room.cpp
+  Generating Code...
+  ComputerGraphicsProject.vcxproj -> C:\Users\siven\Documents\GitHub\Computer-Graphics-Project\x64\Debug\ComputerGraphicsProject.exe
