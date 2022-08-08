@@ -13,7 +13,7 @@ private:
 	glm::vec3 pos, target;
 	float cutoff = 50.0f;
 	GLfloat ambient[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
-	GLfloat diffuse[4] = { 1.5f, 1.5f, 1.5f, 1.5f };
+	GLfloat diffuse[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	GLfloat specular[4] = { 0.9f, 0.9f, 0.9f, 1.0f };
 public:
 

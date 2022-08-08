@@ -11,7 +11,7 @@
 class Camera
 {
 public:
-	Camera(glm::vec3, glm::vec3);
+	Camera(glm::vec3);
 	virtual void move(unsigned char, float);
 	void lookAround(int, int, bool*, int, int);
 	//void rotate(float, float);
@@ -21,7 +21,7 @@ public:
 	~Camera() = default;
 
 private:
-	float angle = 10.0f, pitch = 26.565f, yaw = -90.0f;
+	float pitch = -53.0f, yaw = 135.0f;
 	//int deltaTime, lastFrame;
 	
 };

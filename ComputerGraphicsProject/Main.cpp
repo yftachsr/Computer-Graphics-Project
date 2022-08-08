@@ -5,7 +5,7 @@
 Scene* currentInstance;
 
 float ambientValues[] = { 0.5,0.5,0.5,1 };
-float diffuseValues[] = { 1.5,1.5,1.5,1 };
+float diffuseValues[] = { 1.0,1.0,1.0,1 };
 int organNum = 7, objectNum = 10;
 bool drawMouse = false;
 bool showHelp = false;
@@ -63,10 +63,6 @@ void mouseMotionCallback(int x, int y) {
 	currentInstance->mouseMotion(x, y);
 }
 
-void passiveMouseMotionCallback(int x, int y) {
-	currentInstance->passiveMouseMotion(x, y);
-}
-
 void idleCallback() {
 	currentInstance->idle();
 }
@@ -84,7 +80,7 @@ Scene::Scene(int argc, char** argv) {
 	glutCreateWindow("");										//
 	glClearColor(1.0, 1.0, 1.0, 1.0);							//
 
-	cam = new Camera(glm::vec3(40.0f, 30.0f, -40.0f), glm::vec3(-1.0f, -1.0f, 1.0f));
+	cam = new Camera(glm::vec3(40.0f, 30.0f, -40.0f));
 	robotCam = new RobotCamera(glm::vec3(0.0f, 15.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	floor = new Floor(16, 16, 8, 8);
 	light = new Light(GL_LIGHT0, 0.0f, 40.0f, 0.0f, 0.0f, 0.0f, 0.0f);
@@ -253,21 +249,12 @@ void Scene::specialKeys(int key, int x, int y) {
 
 void Scene::mouseMotion(int x, int y) {
 
+
 	if (!robotView)
 		cam->lookAround(x, y, &firstMouse, screenWidth / 2, screenHeight / 2);
 
 	project();
 	glutPostRedisplay();
-}
-
-void Scene::passiveMouseMotion(int x, int y) {
-	//std::cout << "(" << cam->viewDirection.x << "," << cam->viewDirection.y << "," << cam->viewDirection.z << ")" << std::endl;
-	if (firstMouse) {
-		glutWarpPointer(screenWidth / 2, screenHeight / 2);
-		cam->lastX = screenWidth / 2;
-		cam->lastY = screenHeight / 2;
-		firstMouse = false;
-	}
 }
 
 void Scene::testingObjects() {
@@ -296,7 +283,6 @@ void Scene::registerCallbacks() {
 	glutReshapeFunc(reshapeCallback);
 	glutKeyboardFunc(keyPressCallback);
 	glutMotionFunc(mouseMotionCallback);
-	glutPassiveMotionFunc(passiveMouseMotionCallback);
 	glutSpecialFunc(specialKeysCallback);
 	glutIdleFunc(idleCallback);
 	glutMenuStateFunc(menuOpen);

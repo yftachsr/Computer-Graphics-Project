@@ -43,6 +43,9 @@
     <ClCompile Include="Refrigerator.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Sofa.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -88,6 +91,9 @@
       <Filter>Source files\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="Refrigerator.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sofa.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

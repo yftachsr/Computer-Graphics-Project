@@ -1,7 +1,7 @@
 #include "RobotCamera.h"
 
 RobotCamera::RobotCamera(glm::vec3 pos, glm::vec3 viewDirection) 
-	: Camera(pos,viewDirection) { }
+	: Camera(pos) { }
 
 void RobotCamera::lookAround(float robotYaw, float robotPitch,float rotationAngle) {
 	robotCamRotation = rotationAngle;
