@@ -14,15 +14,12 @@ public:
 	Camera(glm::vec3);
 	virtual void move(unsigned char, float);
 	void lookAround(int, int, bool*, int, int);
-	//void rotate(float, float);
 	glm::vec3 viewDirection, pos;
 	int lastX, lastY;
-	float xoffset;
 	~Camera() = default;
 
 private:
-	float pitch = -53.0f, yaw = 135.0f;
-	//int deltaTime, lastFrame;
+	float pitch, yaw;
 	
 };
 

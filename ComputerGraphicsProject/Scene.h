@@ -17,7 +17,6 @@ class Scene {
 private:
 	Camera* cam;
 	RobotCamera* robotCam;
-	Floor* floor;
 	Light* light;
 	Objects* objects;
 	Room* room;
@@ -29,6 +28,9 @@ private:
 		changeLightPos = true, updateAngle = true;
 	glm::vec3 prevCamPos, prevCamDiraction;
 	float robotRotationAngle = 0.0f, prevRotationAngle;
+	float ambientValues[4] = { 0.5,0.5,0.5,1 };
+	float diffuseValues[4] = { 1.0,1.0,1.0,1 };
+	
 public:
 	Scene(int argc, char** argv);
 	void display();
@@ -37,13 +39,11 @@ public:
 	void reshape(int, int);
 	void keyPress(unsigned char, int, int);
 	void mouseMotion(int, int);
-	void passiveMouseMotion(int, int);
 	void idle();
 	void registerCallbacks();
 	void specialKeys(int,int,int);
 	void moveObjects(int);
 	void changePov();
-	void testingObjects();
 	float getRotationAngle();
 	void setRotationAngle(float);
 	~Scene();

@@ -1,6 +1,7 @@
 #include "Table.h"
 
 Table::Table( int radius ,int thickness, std::string texture_path) {
+
 	texture = new Texture(texture_path, 1);
 	this->radius = radius;
 	this->thickness = thickness;
@@ -9,24 +10,28 @@ Table::Table( int radius ,int thickness, std::string texture_path) {
 
 }
 
-void Table::drawLeg(){
+void Table::drawLeg() {
+
 	glPushMatrix();
 	glTranslated(0, height, 0);
 	glRotated(90, 1, 0, 0);
-	gluCylinder(quadric, 1, 0.5, height, 100, 100);
+	gluCylinder(quadric, 1, 0.5, height, 10, 10);
 	glPopMatrix();
+
 }
 
 void Table::drawSurface(){
+
 	glPushMatrix();
 	glTranslated(0, height, 0);
 	glRotatef(-90, 1, 0, 0);
-	gluCylinder(quadric, radius, radius, thickness, 100, 100);
+	gluCylinder(quadric, radius, radius, thickness, 70, 70);
 	glNormal3f(0.0f, -1.0f, 0.0f);
-	gluDisk(quadric, 0, radius, 100, 100);
+	gluDisk(quadric, 0, radius, 70, 70);
 	glTranslated(0, 0, thickness);
-	gluDisk(quadric, 0, radius, 100, 100);
+	gluDisk(quadric, 0, radius, 70, 70);
 	glPopMatrix();
+
 }
 
 void Table::drawTable(int x, int y, int z, bool tea){
