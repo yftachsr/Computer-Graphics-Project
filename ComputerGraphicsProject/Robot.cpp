@@ -72,15 +72,15 @@ void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime) {
 		else if (key == GLUT_KEY_DOWN)
 			addAngle += 30;
 
-		if (part == 4) 
+		if (part == 4) {
 			if ((elbowAngle > -150 || addAngle > 0) && (elbowAngle < 150 || addAngle < 0))
 				elbowAngle += addAngle;
-		
+		}
 
-		else if (part == 5) 
+		else if (part == 5) {
 			if ((shoulderAngle > -180 || addAngle > 0) && (shoulderAngle < 0 || addAngle < 0))
 				shoulderAngle += addAngle;
-		
+		}
 
 		else if (part == 6) 
 			wristAngle += addAngle;

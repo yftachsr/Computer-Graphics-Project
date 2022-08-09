@@ -41,7 +41,7 @@ void Refrigerator::buttomDoor() {
 	glColor3f(0.5, 0.5, 0.5);
 	glPushMatrix();
 	glTranslated(5, 5, 0);
-	glScaled(0.4, 0.9, 1.6);
+	glScaled(0.4, 0.9, 1.7);
 	glutSolidCube(11);
 	glPopMatrix();
 
@@ -69,7 +69,7 @@ void Refrigerator::upperDoor() {
 	glColor3f(0.5, 0.5, 0.5);
 	glPushMatrix();
 	glTranslated(5, 19, 4.9);
-	glScaled(0.4, 1.4, 0.74);
+	glScaled(0.4, 1.5, 0.8);
 	glutSolidCube(11);
 	glPopMatrix();
 

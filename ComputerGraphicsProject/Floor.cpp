@@ -11,7 +11,7 @@ Floor::Floor(float gridSizeX, float gridSizeY, float squareSizeX, float squareSi
 }
 
 void Floor::reflection(Robot * bipbop) {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glClear(GL_STENCIL_BUFFER_BIT);
 	//Disable color and depth buffers
 	glColorMask(false, false, false, false);             //Disable writting in color buffer
 	glDepthMask(false);                                  //Disable writting in depth buffer

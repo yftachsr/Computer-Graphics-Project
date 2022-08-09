@@ -4,9 +4,8 @@
 
 Scene* currentInstance;
 
-bool showHelp = false;
+bool showHelp = false, drawMouse = false, showAxises = false;
 int organNum = 7, objectNum = 10;
-bool drawMouse = false;
 
 void menuHandler(int value) {
 
@@ -19,7 +18,7 @@ void menuHandler(int value) {
 	}
 	else if (value == 2)  // show help
 		showHelp = !showHelp;
-	
+
 	else if (value > 3 && value < 8) // move robot organs
 		organNum = value;
 
@@ -34,6 +33,9 @@ void menuHandler(int value) {
 
 	else if (value == 12) // change camera POV
 		currentInstance->changePov();
+
+	else if (value == 13)
+		showAxises = !showAxises;
 
 	glutPostRedisplay();
 }
@@ -82,7 +84,7 @@ Scene::Scene(int argc, char** argv) {
 
 	cam = new Camera(glm::vec3(40.0f, 30.0f, -40.0f));
 	robotCam = new RobotCamera(glm::vec3(0.0f, 15.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-	light = new Light(GL_LIGHT0, 0.0f, 40.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	light = new Light(GL_LIGHT0, 25.0f, 35.0f, -35.0f, 0.0f, 0.0f, 0.0f);
 	objects = new Objects();
 	bipbop = new Robot();
 	room = new Room(6.0f, 6.0f, 15.0f, 15.0f);
@@ -95,6 +97,44 @@ Scene::Scene(int argc, char** argv) {
 	registerCallbacks();
 
 	glutMainLoop();
+}
+
+void Scene::display(void) {
+
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_AUTO_NORMAL);
+	glEnable(GL_NORMALIZE);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_COLOR_MATERIAL);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	if (!robotView) // main camera
+		gluLookAt(cam->pos.x, cam->pos.y, cam->pos.z,
+			cam->pos.x + cam->viewDirection.x, cam->pos.y + cam->viewDirection.y, cam->pos.z + cam->viewDirection.z, 0, 1, 0);
+	else // robot camera
+		gluLookAt(robotCam->pos.x, robotCam->pos.y, robotCam->pos.z
+			, robotCam->pos.x + robotCam->viewDirection.x, robotCam->pos.y + robotCam->viewDirection.y, robotCam->pos.z + robotCam->viewDirection.z, 0, 1, 0);
+
+	if (!drawMouse) // don't draw mouse when menu not in use
+		glutSetCursor(GLUT_CURSOR_NONE);
+
+	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientValues);
+
+	menu->drawTextBox();
+	menu->drawHelp(showHelp);
+	light->draw();
+	room->draw(bipbop);
+
+	if(showAxises)
+		drawAxis();
+	objects->drawObjects();
+	bipbop->draw(robotView);
+
+	glFlush();
+	glutSwapBuffers();
+
 }
 
 void Scene::drawAxis() {
@@ -126,43 +166,6 @@ void Scene::project() {
 	gluPerspective(60, ratio, 1, 500);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
-}
-
-void Scene::display(void) {
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_AUTO_NORMAL);
-	glEnable(GL_NORMALIZE);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_COLOR_MATERIAL);
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-
-	if (!robotView) // main camera
-		gluLookAt(cam->pos.x, cam->pos.y, cam->pos.z,
-			cam->pos.x + cam->viewDirection.x, cam->pos.y + cam->viewDirection.y, cam->pos.z + cam->viewDirection.z, 0, 1, 0);
-	else // robot camera
-		gluLookAt(robotCam->pos.x, robotCam->pos.y, robotCam->pos.z
-			, robotCam->pos.x + robotCam->viewDirection.x, robotCam->pos.y + robotCam->viewDirection.y, robotCam->pos.z + robotCam->viewDirection.z, 0, 1, 0);
-
-	if(!drawMouse) // don't draw mouse when menu not in use
-		glutSetCursor(GLUT_CURSOR_NONE);
-	
-	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientValues);
-
-	menu->drawTextBox();
-	menu->drawHelp(showHelp);
-	
-	room->draw(bipbop);
-	light->draw();
-	drawAxis();
-	objects->drawObjects();
-	bipbop->draw(robotView);
-
-	glFlush();
-	glutSwapBuffers();
 
 }
 
@@ -272,7 +275,6 @@ void Scene::registerCallbacks() {
 	glutSpecialFunc(specialKeysCallback);
 	glutIdleFunc(idleCallback);
 	glutMenuStateFunc(menuOpen);
-
 
 }
 
