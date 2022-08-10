@@ -32,8 +32,8 @@ void Objects::drawObjects() {
 	b->drawTable(20, 0, 20, true);
 	Refrigerator* r = new Refrigerator(-35, 1, -30);
 	r->draw();
-	Sofa* s = new Sofa();
-	//s->draw();
 	drawPhoto();
 	drawCarrpet();
+	Sofa* s = new Sofa();
+	s->draw();
 }
