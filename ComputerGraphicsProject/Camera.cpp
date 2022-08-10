@@ -1,9 +1,11 @@
 #include "Camera.h"
 
-Camera::Camera(glm::vec3 pos, glm::vec3 viewDirection) {
+Camera::Camera(glm::vec3 pos) {
 
 	this->pos = pos;
-	this->viewDirection = glm::normalize(viewDirection);
+	this->viewDirection = glm::normalize(glm::vec3(-pos.x, -pos.y, -pos.z));
+	yaw = 90-glm::degrees(atan(pos.x / pos.z));
+	pitch = -glm::degrees(atan(pos.y / pos.x));
 	lastX = 0; lastY = 0;
 
 }
@@ -30,7 +32,10 @@ void Camera::move(unsigned char key, float deltaTime) {
 
 }
 
-void Camera::lookAround(int x, int y, bool* firstMouse, int screenCenterX, int screenCenterY) {
+void Camera::lookAround(int x, int y, bool* firstMouse, 
+	int screenCenterX, int screenCenterY) {
+
+	glm::vec3 direction;
 
 	if (x <= 480 || x >= screenCenterX - 480 || y <= 480
 		|| y >= screenCenterY - 480) { //keep mouse in the screen
@@ -38,15 +43,9 @@ void Camera::lookAround(int x, int y, bool* firstMouse, int screenCenterX, int s
 		lastY = screenCenterY;
 		glutWarpPointer(screenCenterX, screenCenterY);
 	}
-	
-	/*if (firstMouse) {
-		lastX = screenCenterX;
-		lastY = screenCenterY;
-		*firstMouse = false;
-	}*/
 
-	xoffset = x - lastX;
-	float yoffset = lastY - y;
+	float xoffset = x - lastX; //x distance of mouse cursor from the previous position
+	float yoffset = lastY - y; //y distance of mouse cursor from the previous position
 	lastX = x;
 	lastY = y;
 
@@ -57,12 +56,13 @@ void Camera::lookAround(int x, int y, bool* firstMouse, int screenCenterX, int s
 	yaw += xoffset;
 	pitch += yoffset;
 
+	//limit the pitch
 	if (pitch > 89.0f)
 		pitch = 89.0f;
 	if (pitch < -89.0f)
 		pitch = -89.0f;
 
-	glm::vec3 direction;
+	
 	direction.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
 	direction.y = sin(glm::radians(pitch));
 	direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));

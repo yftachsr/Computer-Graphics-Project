@@ -1,6 +1,7 @@
 #pragma once
 #include "HeaderGL.h"
 #include "Texture.h"
+
 class Menu{
 private:
 	void TextBox(std::string description);

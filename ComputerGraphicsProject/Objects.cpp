@@ -36,4 +36,6 @@ void Objects::drawObjects() {
 	r->draw();//draw the Refrigerator
 	drawPhoto();//draw photo
 	drawCarrpet();//draw carrpet
+	Sofa* s = new Sofa();
+	s->draw();
 }

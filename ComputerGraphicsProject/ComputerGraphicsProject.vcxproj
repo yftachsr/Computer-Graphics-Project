@@ -153,6 +153,7 @@
     <ClCompile Include="Robot.cpp" />
     <ClCompile Include="RobotCamera.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="Sofa.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Table.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="RobotCamera.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Sofa.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="Texture.h" />

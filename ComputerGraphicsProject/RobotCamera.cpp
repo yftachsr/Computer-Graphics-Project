@@ -1,15 +1,16 @@
 #include "RobotCamera.h"
 
 RobotCamera::RobotCamera(glm::vec3 pos, glm::vec3 viewDirection) 
-	: Camera(pos,viewDirection) { }
+	: Camera(pos) { }
 
 void RobotCamera::lookAround(float robotYaw, float robotPitch,float rotationAngle) {
+
 	robotCamRotation = rotationAngle;
-	glm::vec3 direction;
-	direction.x = cos(glm::radians(-robotYaw - robotCamRotation)) * cos(glm::radians(-robotPitch));
-	direction.y = sin(glm::radians(-robotPitch));
-	direction.z = sin(glm::radians(-robotYaw - robotCamRotation)) * cos(glm::radians(-robotPitch));
-	viewDirection = glm::normalize(direction);
+	viewDirection.x = cos(glm::radians(-robotYaw - robotCamRotation)) * cos(glm::radians(-robotPitch));
+	viewDirection.y = sin(glm::radians(-robotPitch));
+	viewDirection.z = sin(glm::radians(-robotYaw - robotCamRotation)) * cos(glm::radians(-robotPitch));
+	viewDirection = glm::normalize(viewDirection);
+
 }
 
 void RobotCamera::move(unsigned char key,glm::vec3 moveDirection, float deltaTime) {

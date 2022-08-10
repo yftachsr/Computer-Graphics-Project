@@ -23,5 +23,5 @@ void Wall::draw() {
 }
 
 Wall::~Wall() {
-	//delete texture;
+	delete texture;
 }

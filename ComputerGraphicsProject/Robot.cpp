@@ -1,13 +1,8 @@
 #include "Robot.h"
 
-int shoulderAngle = 0;
-int elbowAngle = 0;
-int wristAngle = 0;
-
 
 Robot::Robot() {
 	pos = glm::vec3(0.0f, 0.0f, 0.0f);
-	lastKey = '1';
 }
 
 void Robot::draw(bool robotView) {
@@ -37,7 +32,7 @@ void Robot::draw(bool robotView) {
 	glTranslated(0, 3.5, 0);
 	glRotated(90, 1, 0, 0);
 	glColor3f(0.7f, 0.0f, 0.0f);
-	gluCylinder(gluNewQuadric(), 0.8, 0.8, 1.5, 100, 100);
+	gluCylinder(gluNewQuadric(), 0.8, 0.8, 1.5, 10, 10);
 	glPopMatrix();
 
 	//Legs
@@ -48,7 +43,7 @@ void Robot::draw(bool robotView) {
 	glPopMatrix();
 
 	//Head
-	if (!robotView) {
+	if (!robotView) { // don't draw head when in robot POV (camera interferens)
 		glPushMatrix();
 		glTranslated(0, 14.7, 0);
 		drawHead(pitch, yaw);
@@ -57,15 +52,16 @@ void Robot::draw(bool robotView) {
 
 	glPushMatrix();
 	glTranslated(4.6, 10, 0);
-	drawHand(0, 0, 0);
+	drawArm(0, 0, 0);
 	glTranslated(-9.2, 0, 0);
-	drawHand(shoulderAngle, elbowAngle, wristAngle);
+	drawArm(shoulderAngle, elbowAngle, wristAngle);
 	glPopMatrix();
 	glPopMatrix();
 
 }
 
 void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime) {
+
 	int addAngle = 0;
 	if (part == 7)
 		moveHead(key, cam, deltaTime);
@@ -86,9 +82,9 @@ void Robot::moveOrgan(int part, int key, RobotCamera* cam, float deltaTime) {
 				shoulderAngle += addAngle;
 		}
 
-		else if (part == 6) {
+		else if (part == 6) 
 			wristAngle += addAngle;
-		}
+		
 	}
 }
 
@@ -101,9 +97,9 @@ void Robot::drawLegs() {
 	gluCylinder(gluNewQuadric(), 0.9, 0.9, 4, 100, 100);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glTranslated(0, 0, -0.3);
-	glutSolidCone(1.3, 1.2, 100, 100);
+	glutSolidCone(1.3, 1.2, 20, 20);
 	glTranslated(4, 0, 0);
-	glutSolidCone(1.3, 1.2, 100, 100);
+	glutSolidCone(1.3, 1.2, 20, 20);
 	glPopMatrix();
 }
 
@@ -112,32 +108,42 @@ void Robot::drawHead(float xangle, float yangle) {
 	glPushMatrix();
 	glRotated(xangle, 1, 0, 0);
 	glRotated(yangle, 0, 1, 0);
+
 	glPushMatrix();
 	glColor3f(1.0f, 0.0f, 0.0f);
 	glTranslated(1.5f, 1.0f, 1.5f);
+
+	// eye 1
 	glPushMatrix();
 	glScaled(1, 1.5, 1);
 	glutSolidCube(1);
 	glPopMatrix();
+
 	glTranslated(-3.0f, 0.0f, 0.0f);
+
+	// eye 2
 	glPushMatrix();
 	glScaled(1, 1.5, 1);
 	glutSolidCube(1);
 	glPopMatrix();
 	glPopMatrix();
+
+	// head itself
 	glPushMatrix();
 	glColor3f(0.0f, 0.0f, 1.0f);
 	glScaled(2, 1.5, 1);
 	glutSolidCube(3);
 	glPopMatrix();
+
+	// antena
 	glPushMatrix();
 	glTranslated(0, 5, 0);
 	glRotated(90, 1, 0, 0);
 	glColor3f(0.7f, 0.7f, 0.7f);
-	gluCylinder(gluNewQuadric(), 0.1, 0.1, 4, 100, 100);
+	gluCylinder(gluNewQuadric(), 0.1, 0.1, 4, 10, 10);
 	glTranslated(0, 0, -0.5);
 	glColor3f(1.0f, 0.0f, 0.0f);
-	gluSphere(gluNewQuadric(), 0.5, 100, 100);
+	gluSphere(gluNewQuadric(), 0.5, 10, 10);
 	glPopMatrix();
 	glPopMatrix();
 
@@ -156,11 +162,13 @@ void Robot::moveHead(int key, RobotCamera* cam, float deltaTime) {
 	else if (key == GLUT_KEY_RIGHT)
 		yaw -= speed;
 
+	// limit pitch
 	if (pitch >= MAX_PITCH_ANGLE)
 		pitch = MAX_PITCH_ANGLE;
 	else if (pitch <= -MAX_PITCH_ANGLE)
 		pitch = -MAX_PITCH_ANGLE;
 
+	// when yaw at maximum, rotate body
 	if (yaw >= MAX_YAW_ANGLE && !(key == GLUT_KEY_DOWN || key == GLUT_KEY_UP)) {
 		yaw = MAX_YAW_ANGLE;
 		rotationAngle += speed;
@@ -169,7 +177,8 @@ void Robot::moveHead(int key, RobotCamera* cam, float deltaTime) {
 		yaw = -MAX_YAW_ANGLE;
 		rotationAngle -= speed;
 	}
-		
+	
+	// update robot camera
 	cam->lookAround(yaw, pitch, rotationAngle);
 }
 
@@ -183,39 +192,50 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, float deltaTime) {
 	if (key == 'w' || key == 'W') {
 		pos.x += speed * moveDirection.x;
 		pos.z += speed * moveDirection.z;
-
 	}
 	else if (key == 's' || key == 'S') {
 		pos.x -= speed * moveDirection.x;
-		pos.z -= speed * moveDirection.z;
-		
+		pos.z -= speed * moveDirection.z;	
 	}
-	else if (key == 'd' || key == 'D') {
+	else if (key == 'd' || key == 'D') 
 		pos -= speed * normal;
-	}
+	
 	else if (key == 'a' || key == 'A') 
 		pos += speed * normal;
 		
 }
 
-void Robot::drawHand(int shoulderAngle, int elbowAngle, int wristAngle) {
+void Robot::drawArm(int shoulderAngle, int elbowAngle, int wristAngle) {
+
 	glPushMatrix();
 	glRotated(90, 1, 0, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
-	glutSolidSphere(1, 100, 100);
+
+	// shoulder joint
+	glutSolidSphere(1, 15, 15);
 	glRotated(shoulderAngle, 0, 1, 0);
+
+	// upper arm
 	glTranslated(0, 0, 0.5);
 	glColor3f(1.0f, 1.0f, 0.0f);
-	gluCylinder(gluNewQuadric(), 0.9, 0.9, 2, 100, 100);
+	gluCylinder(gluNewQuadric(), 0.9, 0.9, 2, 30, 30);
+
+	// elbow joint
 	glTranslated(0, 0, 2);
 	glColor3f(0.0f, 1.0f, 0.0f);
-	glutSolidSphere(1, 100, 100);
+	glutSolidSphere(1, 40, 40);
 	glRotated(elbowAngle, 0, 1, 0);
+
+	// forearm
 	glTranslated(0, 0, 0.5);
 	glColor3f(0.5f, 1.0f, 0.8f);
-	gluCylinder(gluNewQuadric(), 0.9, 0.9, 2, 100, 100);
+	gluCylinder(gluNewQuadric(), 0.9, 0.9, 2, 30, 30);
+
+	// wrist joint
 	glTranslated(0, 0, 2.5);
 	glRotatef(wristAngle, 0, 0, 1);
+
+	//hand
 	glScaled(0.7, 0.7, 0.7);
 	glColor3f(0.5f, 0.0f, 0.8f);
 	glutSolidDodecahedron();
@@ -236,27 +256,4 @@ float Robot::getRotationAngle() {
 
 glm::vec3 Robot::getPos() {
 	return pos;
-}
-
-bool Robot::getIsSameDirection() {
-	return isSameDirection;
-}
-
-void Robot::updateIsSameDirection(unsigned char key) {
-	if (lastKey == key)
-		isSameDirection = true;
-	else
-		isSameDirection = false;
-}
-
-int Robot::sign(float x) {
-	if (x > 0)
-		return 1;
-	else if (x < 0)
-		return -1;
-	return 0;
-}
-
-unsigned char Robot::getLastKey() {
-	return lastKey;
 }

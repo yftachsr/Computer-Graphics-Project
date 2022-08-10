@@ -3,6 +3,7 @@
 #include "Texture.h"
 #include "Table.h"
 #include "Refrigerator.h"
+#include "Sofa.h"
 
 class Objects{
 public:

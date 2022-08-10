@@ -23,6 +23,7 @@ Menu::Menu(void (*func)(int)) {
 	glutAddMenuEntry("Move camera", 10);
 	glutAddMenuEntry("Move Robot", 11);
 	glutAddMenuEntry("Change POV", 12);
+	glutAddMenuEntry("Toggle Axises", 13);
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 	drawTextBool = false;//set asking user for input to false
 	ambientInput = false;//set asking user for new ambient valuse to false
