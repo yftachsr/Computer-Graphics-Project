@@ -136,7 +136,7 @@ void Robot::drawHead(float xangle, float yangle) {
 
 	// antena
 	glPushMatrix();
-	glTranslated(0, 5, 0);
+	glTranslated(0, 4, 0);
 	glRotated(90, 1, 0, 0);
 	glColor3f(0.7f, 0.7f, 0.7f);
 	gluCylinder(gluNewQuadric(), 0.1, 0.1, 4, 10, 10);
