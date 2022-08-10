@@ -3,9 +3,9 @@
 Camera::Camera(glm::vec3 pos) {
 
 	this->pos = pos;
-	this->viewDirection = glm::normalize(glm::vec3(-pos.x, -pos.y, -pos.z));
-	yaw = 90-glm::degrees(atan(pos.x / pos.z));
-	pitch = -glm::degrees(atan(pos.y / pos.x));
+	this->viewDirection = glm::normalize(glm::vec3(-pos.x, 10-pos.y, -pos.z));
+	yaw = 80-glm::degrees(atan(pos.x / pos.z));
+	pitch = glm::degrees(atan(pos.y / pos.x));
 	lastX = 0; lastY = 0;
 
 }
