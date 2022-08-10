@@ -19,10 +19,9 @@ void Robot::draw(bool robotView) {
 
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
-
-	glRotatef(90 + rotationAngle, 0, 1, 0);
+	glRotatef(rotationAngle-90, 0, 1, 0);
 	glPushMatrix();
-
+	glColor3f(0.8, 0.8, 0.8);
 	//Body
 	glTranslated(0, 7.5, 0);
 	glScaled(1.5, 1.7, 1);

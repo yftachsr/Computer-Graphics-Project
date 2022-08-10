@@ -6,7 +6,7 @@ Menu::Menu(void (*func)(int)) {
 	int submenu_id1 = glutCreateMenu(func);
 	glutAddMenuEntry("Quit", 0);
 	glutAddMenuEntry("Adjust ambient ligth", 1);
-	glutAddMenuEntry("Open\Close help", 2);
+	glutAddMenuEntry("Open\\Close help", 2);
 	int submenu_id2 = glutCreateMenu(func);
 	glutAddMenuEntry("shoulder", 5);
 	glutAddMenuEntry("Elbow", 4);
