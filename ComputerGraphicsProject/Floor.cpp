@@ -1,8 +1,8 @@
 #include "Floor.h"
-
+//constructor
 Floor::Floor(float gridSizeX, float gridSizeY, float squareSizeX, float squareSizeY) {
 	
-	t = new Texture("floorT1.jpg", 1);
+	t = new Texture("floorT1.jpg", 1);//create texture object to the floor
 	this->gridSizeX = gridSizeX;
 	this->gridSizeY = gridSizeY;
 	this->squareSizeX = squareSizeX;
@@ -11,14 +11,13 @@ Floor::Floor(float gridSizeX, float gridSizeY, float squareSizeX, float squareSi
 }
 
 void Floor::reflection(Robot * bipbop) {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	//Disable color and depth buffers
-	glColorMask(false, false, false, false);             //Disable writting in color buffer
-	glDepthMask(false);                                  //Disable writting in depth buffer
+	glClear(GL_STENCIL_BUFFER_BIT);
+	glColorMask(false, false, false, false);//Disable writting in color buffer
+	glDepthMask(false);//Disable writting in depth buffer
 
-	glEnable(GL_STENCIL_TEST);                        //Enable Stencil test
-	glStencilFunc(GL_ALWAYS, 1, 1);                   //Test always success, value written 1
-	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);  //Stencil & Depth test passes => replace existing value
+	glEnable(GL_STENCIL_TEST);//Enable Stencil test
+	glStencilFunc(GL_ALWAYS, 1, 1);//Test always success, value written 1
+	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);//Stencil & Depth test passes => replace existing value
 	
 	glBegin(GL_QUADS);
 	glVertex3f(gridSizeX * squareSizeX/2,0, gridSizeY * squareSizeY/2);
@@ -27,22 +26,22 @@ void Floor::reflection(Robot * bipbop) {
 	glVertex3f(gridSizeX * squareSizeX / 2, 0, -gridSizeY * squareSizeY / 2);
 	glEnd();
 
-	glColorMask(1, 1, 1, 1);             //Disable writting in color buffer
-	glEnable(GL_DEPTH_TEST);
+	glColorMask(true, true, true, true);//Disable writting in color buffer
+	glDepthMask(true);
 
-	glStencilFunc(GL_EQUAL, 1, 1);                   //Draw only where stencil buffer is 1
-	glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);		//Stencil buffer read only
+	glStencilFunc(GL_EQUAL, 1, 1);//Draw only where stencil buffer is 1
+	glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);//Stencil buffer read only
 
 	glPushMatrix();
-	glScalef(1.0f, -1.0f, 1.0f);
-	glColor3f(1, 0, 0);	//Mirror Y
+	glScalef(1.0f, -1.0f, 1.0f);//Mirror Y
+	glColor3f(1, 0, 0);	
 	Objects::drawObjects();
 	bipbop->draw(NULL);
 	glPopMatrix();
 
-	glDisable(GL_STENCIL_TEST);                        //Disable Stencil test
+	glDisable(GL_STENCIL_TEST);//Disable Stencil test
 	glDepthMask(true);
-	glColorMask(true, true, true, true); //Enable drawing of r, g, b & a
+	glColorMask(true, true, true, true);//Enable drawing of r, g, b & a
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -55,8 +54,6 @@ void Floor::reflection(Robot * bipbop) {
 }
 
 void Floor::draw() {
-
-
 	GLfloat ambient[] = { 0.135,0.225f,0.1575f,1.0f };
 	GLfloat specular[] = { 10.0f, 10.0f, 10.0f, 1.0f };
 	GLfloat diffuse[] = { 0.54f, 0.89f, 0.63f, 1.0f };
@@ -97,23 +94,20 @@ void Floor::draw() {
 	glPopMatrix();
 	glDisable(GL_TEXTURE_2D);
 	t->~Texture();
-
-
-
 }
-
+//get GridSizeX
 int Floor::getGridSizeX() {
 	return gridSizeX;
 }
-
+//get GridSizeY
 int Floor::getGridSizeY() {
 	return gridSizeY;
 }
-
+//get SquareSizeX 
 int Floor::getSquareSizeX() {
 	return squareSizeX;
 }
-
+//get SquareSizeY
 int Floor::getSquareSizeY() {
 	return squareSizeY;
 }

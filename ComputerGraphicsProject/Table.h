@@ -14,7 +14,6 @@ public:
 	Table(int, int, std::string);
 	void drawTable(int,int,int, bool);
 	void drawTeapot(float, float, float);
-	~Table();
 	
 };
 
