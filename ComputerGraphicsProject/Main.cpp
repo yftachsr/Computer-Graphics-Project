@@ -82,7 +82,7 @@ Scene::Scene(int argc, char** argv) {
 	glutCreateWindow("");										//
 	glClearColor(1.0, 1.0, 1.0, 1.0);							//
 
-	cam = new Camera(glm::vec3(40.0f, 30.0f, -40.0f));
+	cam = new Camera(glm::vec3(-40.0f, 30.0f, -40.0f));
 	robotCam = new RobotCamera(glm::vec3(0.0f, 15.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 	light = new Light(GL_LIGHT0, 25.0f, 35.0f, -35.0f, 0.0f, 0.0f, 0.0f);
 	objects = new Objects();
