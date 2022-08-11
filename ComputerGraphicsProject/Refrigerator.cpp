@@ -21,7 +21,7 @@ void Refrigerator::draw() {
 	glTranslated(x, y, z);
 	glRotated(180, 0, 1, 0);
 
-	glColor3f(0.75, 0.75, 0.75);
+	glColor3f(0.75f, 0.75f, 0.75f);
 	glPushMatrix();
 	glTranslated(0, 14, 0);
 	glScaled(1, 2.7, 2);
@@ -39,14 +39,14 @@ void Refrigerator::draw() {
 
 void Refrigerator::buttomDoor() {
 
-	glColor3f(0.5, 0.5, 0.5);
+	glColor3f(0.5f, 0.5f, 0.5f);
 	glPushMatrix();
 	glTranslated(5, 5, 0);
 	glScaled(0.4, 0.9, 1.7);
 	glutSolidCube(11);
 	glPopMatrix();
 
-	glColor3f(0.824, 0.824, 0.824);
+	glColor3f(0.824f, 0.824f, 0.824f);
 	glPushMatrix();
 	glTranslated(8.5, 8, -7.5);
 	gluCylinder(gluNewQuadric(), 0.4, 0.4, 15, 100, 100);
@@ -60,36 +60,36 @@ void Refrigerator::buttomDoor() {
 
 	glPushMatrix();
 	glTranslated(5.7, 8, 6.5);
-	glRotatef(90, 0, 1, 0);
+	glRotated(90, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), 0.3, 0.3, 3, 100, 100);
 	glPopMatrix();
 }
 
 void Refrigerator::upperDoor() {
 
-	glColor3f(0.5, 0.5, 0.5);
+	glColor3f(0.5f, 0.5f, 0.5f);
 	glPushMatrix();
 	glTranslated(5, 19, 4.9);
 	glScaled(0.4, 1.5, 0.8);
 	glutSolidCube(11);
 	glPopMatrix();
 
-	glColor3f(0.824, 0.824, 0.824);
+	glColor3f(0.824f, 0.824f, 0.824f);
 	glPushMatrix();
 	glTranslated(8.5, 25.5, 2);
-	glRotatef(90, 1, 0, 0);
+	glRotated(90, 1, 0, 0);
 	gluCylinder(gluNewQuadric(), 0.4, 0.4, 13, 100, 100);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslated(6.5, 24, 2);
-	glRotatef(90, 0, 1, 0);
+	glRotated(90, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), 0.4, 0.4, 2, 100, 100);
 	glPopMatrix();
 
 	glPushMatrix();
 	glTranslated(6.5, 14, 2);
-	glRotatef(90, 0, 1, 0);
+	glRotated(90, 0, 1, 0);
 	gluCylinder(gluNewQuadric(), 0.4, 0.4, 2, 100, 100);
 	glPopMatrix();
 }

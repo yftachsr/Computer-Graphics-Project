@@ -5,7 +5,7 @@
 class Wall
 {
 private:
-	int width, height;
+	float width, height;
 	Texture* texture;
 public: 
 	Wall(float, float, std::string);

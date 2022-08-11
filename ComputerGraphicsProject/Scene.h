@@ -11,7 +11,7 @@
 #include <math.h>
 
 #define WINDOW_SIZE_X 1000
-#define WINDOW_SIZE_Y 600
+#define WINDOW_SIZE_Y 700
 
 class Scene {
 private:
@@ -26,10 +26,9 @@ private:
 	int currentFrame = 0;
 	bool firstMouse = true, moveCam = true, robotView = false,
 		changeLightPos = true, updateAngle = true;
-	glm::vec3 prevCamPos, prevCamDiraction;
 	float robotRotationAngle = 0.0f, prevRotationAngle;
-	float ambientValues[4] = { 0.5,0.5,0.5,1 };
-	float diffuseValues[4] = { 1.0,1.0,1.0,1 };
+	float ambientValues[4] = { 0.4f, 0.4f, 0.4f, 1.0f };
+	float diffuseValues[4] = { 1.0f, 1.0f, 1.0f, 1.0f };
 	
 public:
 	Scene(int argc, char** argv);

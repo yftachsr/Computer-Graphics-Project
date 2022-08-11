@@ -1,6 +1,7 @@
+#pragma once
 #include "HeaderGl.h"
 #include "string"
-#pragma once
+
 
 class Texture {
 private:

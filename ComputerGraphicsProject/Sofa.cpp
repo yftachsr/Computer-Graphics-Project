@@ -17,10 +17,10 @@ void Sofa::draw() {
 	glRotated(30, 0, 1, 0);
 	glColor3f(0.6f, 0.2f, 0.3f);
 	
-	glColor3f(0.6164,0.5929, 0.6509);
+	glColor3f(0.6164f,0.5929f, 0.6509f);
 	legs();
 
-	glColor3f(0.6542, 0.3542, 0.3542);
+	glColor3f(0.6542f, 0.3542f, 0.3542f);
 	//side 1
 	glPushMatrix();
 	glScaled(4.7, 2.6, 0.5);
@@ -44,9 +44,9 @@ void Sofa::draw() {
 	glTranslated(-2, 6, 2.3);
 	glutSolidCube(5);
 
-	glColor3f(0.6f, 0.2f, 0.3f);
-	//glColor3f(0.464843, 0.533333, 0.59765);
+	
 	//buttom pillow
+	glColor3f(0.6f, 0.2f, 0.3f);
 	glScaled(0.7, 1.3, 1.2);
 	glTranslated(0, 4, 0);
 	glutSolidTorus(2, 2, 20, 20); 

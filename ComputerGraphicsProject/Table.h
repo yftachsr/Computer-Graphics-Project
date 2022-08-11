@@ -1,3 +1,4 @@
+#pragma once
 #include "HeaderGL.h"
 #include "Texture.h"
 

@@ -43,10 +43,10 @@ void Menu::drawHelp(bool show) {
 		t->Bind();
 		glEnable(GL_TEXTURE_2D);
 		glBegin(GL_QUADS);//draw help window
-		glTexCoord2f(1,0);	glVertex2f(0.5, 0.8);
-		glTexCoord2f(1,1);	glVertex2f(0.5, -0.8);
-		glTexCoord2f(0,1);	glVertex2f(-0.5, -0.8);
-		glTexCoord2f(0,0);	glVertex2f(-0.5, 0.8);
+		glTexCoord2f(1.0f,0.0f);	glVertex2f(0.5f, 0.8f);
+		glTexCoord2f(1.0f,1.0f);	glVertex2f(0.5f, -0.8f);
+		glTexCoord2f(0.0f,1.0f);	glVertex2f(-0.5f, -0.8f);
+		glTexCoord2f(0.0f,0.0f);	glVertex2f(-0.5f, 0.8f);
 		glEnd();
 		
 		glDisable(GL_TEXTURE_2D);
@@ -106,11 +106,11 @@ void Menu::drawTextBox() {
 void Menu::TextBox(std::string description) {
 	if (drawTextBool) {
 		glColor3f(0.2f, 0.2f, 0.2f);
-		glRasterPos2f(-0.5, 0.5);
+		glRasterPos2f(-0.5f, 0.5f);
 		for (int i = 0; i < description.length(); i++) {//draw string to be display to user screen
 			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, description[i]);
 		}
-		glRasterPos2f(-0.4, 0.4);
+		glRasterPos2f(-0.4f, 0.4f);
 		for (int i = 0; i < str.length(); i++)//draw the keys clicked by the user
 			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, str[i]);
 	}

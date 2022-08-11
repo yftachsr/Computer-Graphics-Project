@@ -83,15 +83,12 @@ Scene::Scene(int argc, char** argv) {
 	glClearColor(1.0, 1.0, 1.0, 1.0);							//
 
 	cam = new Camera(glm::vec3(-40.0f, 30.0f, -40.0f));
-	robotCam = new RobotCamera(glm::vec3(0.0f, 15.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	robotCam = new RobotCamera(glm::vec3(0.0f, 15.0f, 0.0f));
 	light = new Light(GL_LIGHT0, 20.0f, 35.0f, -35.0f, 0.0f, 0.0f, 0.0f);
 	objects = new Objects();
 	bipbop = new Robot();
 	room = new Room(6.0f, 6.0f, 15.0f, 15.0f);
 	menu = new Menu(menuHandler);
-
-	prevCamPos = cam->pos;
-	prevCamDiraction = cam->viewDirection;
 
 	::currentInstance = this;
 	registerCallbacks();
@@ -111,11 +108,13 @@ void Scene::display(void) {
 	glLoadIdentity();
 
 	if (!robotView) // main camera
-		gluLookAt(cam->pos.x, cam->pos.y, cam->pos.z,
-			cam->pos.x + cam->viewDirection.x, cam->pos.y + cam->viewDirection.y, cam->pos.z + cam->viewDirection.z, 0, 1, 0);
+		gluLookAt(cam->getPos().x, cam->getPos().y, cam->getPos().z,
+			(double)cam->getPos().x + cam->getViewDirection().x,
+			(double)cam->getPos().y + cam->getViewDirection().y, (double)cam->getPos().z + cam->getViewDirection().z, 0, 1, 0);
 	else // robot camera
-		gluLookAt(robotCam->pos.x, robotCam->pos.y, robotCam->pos.z
-			, robotCam->pos.x + robotCam->viewDirection.x, robotCam->pos.y + robotCam->viewDirection.y, robotCam->pos.z + robotCam->viewDirection.z, 0, 1, 0);
+		gluLookAt(robotCam->getPos().x, robotCam->getPos().y, robotCam->getPos().z
+			, (double)robotCam->getPos().x + robotCam->getViewDirection().x,
+			(double)robotCam->getPos().y + robotCam->getViewDirection().y, (double)robotCam->getPos().z + robotCam->getViewDirection().z, 0, 1, 0);
 
 	if (!drawMouse) // don't draw mouse when menu not in use
 		glutSetCursor(GLUT_CURSOR_NONE);
@@ -180,13 +179,13 @@ void Scene::reshape(int width, int height)
 }
 
 void Scene::changePov() {
-	prevCamPos = cam->pos; // save main camera position
-	prevCamDiraction = cam->viewDirection; // save main camera direction
+
 	robotView = !robotView;
 	if (robotView)
 		objectNum = 11; // move robot
 	else
 		objectNum = 10; // move camera
+
 }
 
 void Scene::keyPress(unsigned char key, int x, int y) {
@@ -214,11 +213,11 @@ void Scene::moveObjects(int key) {
 	switch (objectNum) {
 		case 8: // move light position
 			changeLightPos = true;
-			light->move(key, cam->viewDirection, changeLightPos, deltaTime);
+			light->move(key, cam->getViewDirection(), changeLightPos, deltaTime);
 			break;
 		case 3: // move light direction
 			changeLightPos = false;
-			light->move(key, cam->viewDirection, changeLightPos, deltaTime);
+			light->move(key, cam->getViewDirection(), changeLightPos, deltaTime);
 			break;
 		case 10: // move camera
 			moveCam = true;
@@ -228,12 +227,12 @@ void Scene::moveObjects(int key) {
 		case 11: // move robot
 			moveCam = false;
 			if (!robotView) { // move the robot reletive to the main camera
-				bipbop->move(key, cam->viewDirection, deltaTime);
-				robotCam->move(key, cam->viewDirection, deltaTime);
+				bipbop->move(key, cam->getViewDirection(), deltaTime);
+				robotCam->move(key, cam->getViewDirection(), deltaTime);
 			}
 			else { // move the robot reletive to the robot camera
-				bipbop->move(key, robotCam->viewDirection, deltaTime);
-				robotCam->move(key, robotCam->viewDirection, deltaTime);
+				bipbop->move(key, robotCam->getViewDirection(), deltaTime);
+				robotCam->move(key, robotCam->getViewDirection(), deltaTime);
 			}
 	}
 }
@@ -247,7 +246,7 @@ void Scene::specialKeys(int key, int x, int y) {
 void Scene::mouseMotion(int x, int y) {
 
 	if (!robotView) // don't touch main camera when in robot POV
-		cam->lookAround(x, y, &firstMouse, screenWidth / 2, screenHeight / 2);
+		cam->lookAround(x, y, &firstMouse, screenWidth / 2.0f, screenHeight / 2.0f);
 
 	project();
 	glutPostRedisplay();

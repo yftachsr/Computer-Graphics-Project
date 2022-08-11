@@ -13,13 +13,15 @@ class Camera
 public:
 	Camera(glm::vec3);
 	virtual void move(unsigned char, float);
-	void lookAround(int, int, bool*, int, int);
-	glm::vec3 viewDirection, pos;
-	int lastX, lastY;
+	void lookAround(int, int, bool*, float, float);
+	glm::vec3 getPos();
+	glm::vec3 getViewDirection();
 	~Camera() = default;
 
-private:
+protected:
 	float pitch, yaw;
+	glm::vec3 viewDirection, pos;
+	float lastX, lastY;
 	
 };
 

@@ -19,9 +19,9 @@ void Robot::draw(bool robotView) {
 
 	glPushMatrix();
 	glTranslatef(pos.x, pos.y, pos.z);
-	glRotatef(rotationAngle-90, 0, 1, 0);
+	glRotated(rotationAngle-90, 0, 1, 0);
 	glPushMatrix();
-	glColor3f(0.8, 0.8, 0.8);
+	glColor3f(0.8f, 0.8f, 0.8f);
 	//Body
 	glTranslated(0, 7.5, 0);
 	glScaled(1.5, 1.7, 1);
@@ -150,7 +150,7 @@ void Robot::drawHead(float xangle, float yangle) {
 
 void Robot::moveHead(int key, RobotCamera* cam, float deltaTime) {
 
-	float speed = 0.3f * deltaTime;
+	float speed = 0.15f * deltaTime;
 
 	if (key == GLUT_KEY_DOWN)
 		pitch += speed;
@@ -186,7 +186,7 @@ void Robot::move(unsigned char key, glm::vec3 moveDirection, float deltaTime) {
 	glm::vec3 upVector = glm::vec3(0, 1, 0);
 	glm::vec3 normal = glm::cross(upVector, moveDirection);
 	normal = glm::normalize(normal);
-	float speed = 0.05f * deltaTime;
+	float speed = 0.04f * deltaTime;
 
 	if (key == 'w' || key == 'W') {
 		pos.x += speed * moveDirection.x;
@@ -212,7 +212,7 @@ void Robot::drawArm(int shoulderAngle, int elbowAngle, int wristAngle) {
 
 	// shoulder joint
 	glutSolidSphere(1, 15, 15);
-	glRotated(shoulderAngle, 0, 1, 0);
+	glRotated((float)shoulderAngle, 0, 1, 0);
 
 	// upper arm
 	glTranslated(0, 0, 0.5);
@@ -223,7 +223,7 @@ void Robot::drawArm(int shoulderAngle, int elbowAngle, int wristAngle) {
 	glTranslated(0, 0, 2);
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glutSolidSphere(1, 40, 40);
-	glRotated(elbowAngle, 0, 1, 0);
+	glRotated((float)elbowAngle, 0, 1, 0);
 
 	// forearm
 	glTranslated(0, 0, 0.5);
@@ -232,7 +232,7 @@ void Robot::drawArm(int shoulderAngle, int elbowAngle, int wristAngle) {
 
 	// wrist joint
 	glTranslated(0, 0, 2.5);
-	glRotatef(wristAngle, 0, 0, 1);
+	glRotatef((float)wristAngle, 0, 0, 1);
 
 	//hand
 	glScaled(0.7, 0.7, 0.7);

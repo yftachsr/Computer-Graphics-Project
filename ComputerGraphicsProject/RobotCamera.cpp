@@ -1,11 +1,14 @@
 #include "RobotCamera.h"
 
-RobotCamera::RobotCamera(glm::vec3 pos, glm::vec3 viewDirection) 
-	: Camera(pos) { }
+RobotCamera::RobotCamera(glm::vec3 pos) : Camera(pos) {
+
+	this -> viewDirection = glm::vec3(-1, 0, 0);
+
+}
 
 void RobotCamera::lookAround(float robotYaw, float robotPitch,float rotationAngle) {
 
-	robotCamRotation = rotationAngle;
+	robotCamRotation = rotationAngle + 180.0f;
 	viewDirection.x = cos(glm::radians(-robotYaw - robotCamRotation)) * cos(glm::radians(-robotPitch));
 	viewDirection.y = sin(glm::radians(-robotPitch));
 	viewDirection.z = sin(glm::radians(-robotYaw - robotCamRotation)) * cos(glm::radians(-robotPitch));
@@ -18,7 +21,7 @@ void RobotCamera::move(unsigned char key,glm::vec3 moveDirection, float deltaTim
 	glm::vec3 upVector = glm::vec3(0, 1, 0);
 	glm::vec3 normal = glm::cross(upVector, moveDirection);
 	normal = glm::normalize(normal);
-	float speed = 0.05f * deltaTime;
+	float speed = 0.04f * deltaTime;
 
 	if (key == 'w' || key == 'W') {
 		pos.x += speed * moveDirection.x;

@@ -1,5 +1,6 @@
 #pragma once
 #include "HeaderGL.h"
+
 class Refrigerator
 {
 private:

@@ -6,16 +6,16 @@
 class Floor
 {
 private:
-	int gridSizeX, gridSizeY, squareSizeX, squareSizeY;
+	float gridSizeX, gridSizeY, squareSizeX, squareSizeY;
 	Texture* t;
 public:
 	Floor(float, float, float, float);
 	void reflection(Robot * bipbop);
 	void draw();
-	int getGridSizeX();
-	int getGridSizeY();
-	int getSquareSizeX();
-	int getSquareSizeY();
+	float getGridSizeX();
+	float getGridSizeY();
+	float getSquareSizeX();
+	float getSquareSizeY();
 	~Floor() = default;
 };
 

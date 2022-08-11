@@ -20,10 +20,10 @@ void Floor::reflection(Robot * bipbop) {
 	glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);//Stencil & Depth test passes => replace existing value
 	
 	glBegin(GL_QUADS);
-	glVertex3f(gridSizeX * squareSizeX/2,0, gridSizeY * squareSizeY/2);
-	glVertex3f(-gridSizeX * squareSizeX / 2, 0, gridSizeY * squareSizeY / 2);
-	glVertex3f(-gridSizeX * squareSizeX / 2, 0, -gridSizeY * squareSizeY / 2);
-	glVertex3f(gridSizeX * squareSizeX / 2, 0, -gridSizeY * squareSizeY / 2);
+	glVertex3f(gridSizeX * squareSizeX/2.0f,0.0f, gridSizeY * squareSizeY/2.0f);
+	glVertex3f(-gridSizeX * squareSizeX / 2.0f, 0.0f, gridSizeY * squareSizeY / 2.0f);
+	glVertex3f(-gridSizeX * squareSizeX / 2.0f, 0.0f, -gridSizeY * squareSizeY / 2.0f);
+	glVertex3f(gridSizeX * squareSizeX / 2.0f, 0.0f, -gridSizeY * squareSizeY / 2.0f);
 	glEnd();
 
 	glColorMask(true, true, true, true);//Disable writting in color buffer
@@ -34,7 +34,7 @@ void Floor::reflection(Robot * bipbop) {
 
 	glPushMatrix();
 	glScalef(1.0f, -1.0f, 1.0f);//Mirror Y
-	glColor3f(1, 0, 0);	
+	glColor3f(1.0f, 0.0f, 0.0f);
 	Objects::drawObjects();
 	bipbop->draw(NULL);
 	glPopMatrix();
@@ -54,10 +54,10 @@ void Floor::reflection(Robot * bipbop) {
 }
 
 void Floor::draw() {
-	GLfloat ambient[] = { 0.135,0.225f,0.1575f,1.0f };
+	GLfloat ambient[] = { 0.135f ,0.225f, 0.1575f, 1.0f };
 	GLfloat specular[] = { 10.0f, 10.0f, 10.0f, 1.0f };
 	GLfloat diffuse[] = { 0.54f, 0.89f, 0.63f, 1.0f };
-	GLfloat shininess = 128*5;
+	GLfloat shininess = 128.0f;
 
 	glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
@@ -74,19 +74,15 @@ void Floor::draw() {
 	for (unsigned int x = 0; x < gridSizeX; ++x) {
 		for (unsigned int y = 0; y < gridSizeY; ++y)
 		{
-			//if ((x + y) & 0x00000001) //modulo 2
-			//	glColor3f(0.4f, 0.4f, 0.4f); //white
-			//else
-			//	glColor3f(0.0f, 0.0f, 0.0f); //black
 
 			glNormal3d(0, 1, 0);
-			glTexCoord2f(0, 0);  glVertex3f(x * squareSizeX, 0, y * squareSizeY);
+			glTexCoord2f(0.0f, 0.0f);  glVertex3f((float)x * squareSizeX, 0.0f, (float)y * squareSizeY);
 			glNormal3d(0, 1, 0);
-			glTexCoord2f(1, 0);  glVertex3f((x + 1) * squareSizeX, 0, y * squareSizeY);
+			glTexCoord2f(1.0f, 0.0f);  glVertex3f((float)(x + 1) * squareSizeX, 0.0f, (float)y * squareSizeY);
 			glNormal3d(0, 1, 0);
-			glTexCoord2f(1, 1);  glVertex3f((x + 1) * squareSizeX, 0, (y + 1) * squareSizeY);
+			glTexCoord2f(1.0f, 1.0f);  glVertex3f((float)(x + 1) * squareSizeX, 0.0f, (float)(y + 1) * squareSizeY);
 			glNormal3d(0, 1, 0);
-			glTexCoord2f(0, 1);  glVertex3f(x * squareSizeX, 0, (y + 1) * squareSizeY);
+			glTexCoord2f(0.0f, 1.0f);  glVertex3f((float)x * squareSizeX, 0.0f, (float)(y + 1) * squareSizeY);
 
 		}
 	}
@@ -96,18 +92,18 @@ void Floor::draw() {
 	t->~Texture();
 }
 //get GridSizeX
-int Floor::getGridSizeX() {
+float Floor::getGridSizeX() {
 	return gridSizeX;
 }
 //get GridSizeY
-int Floor::getGridSizeY() {
+float Floor::getGridSizeY() {
 	return gridSizeY;
 }
 //get SquareSizeX 
-int Floor::getSquareSizeX() {
+float Floor::getSquareSizeX() {
 	return squareSizeX;
 }
 //get SquareSizeY
-int Floor::getSquareSizeY() {
+float Floor::getSquareSizeY() {
 	return squareSizeY;
 }

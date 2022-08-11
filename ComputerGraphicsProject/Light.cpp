@@ -39,7 +39,7 @@ void Light::move(unsigned char key, glm::vec3 viewDirection, bool changePos, flo
 	glm::vec3 upVector = glm::vec3(0, 1, 0);
 	glm::vec3 normal = glm::cross(upVector, viewDirection);
 	normal = glm::normalize(normal);
-	float speed = 0.1f * deltaTime;
+	float speed = 0.04f * deltaTime;
 	glm::vec3 result;
 
 	if (changePos)

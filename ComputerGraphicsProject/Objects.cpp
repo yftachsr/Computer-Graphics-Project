@@ -6,10 +6,10 @@ void drawCarrpet() {
 	t->Bind();
 	glEnable(GL_TEXTURE_2D);
 	glBegin(GL_QUADS);//draw carrpet
-	glTexCoord2f(1, 1);	glVertex3f(-10, 0.2, 10);
-	glTexCoord2f(0, 1);	glVertex3f(-10, 0.2, 40);
-	glTexCoord2f(0, 0);	glVertex3f(10, 0.2, 40);
-	glTexCoord2f(1, 0);	glVertex3f(10, 0.2, 10);
+	glTexCoord2f(1.0f, 1.0f);	glVertex3f(-10.0f, 0.2f, 10.0f);
+	glTexCoord2f(0.0f, 1.0f);	glVertex3f(-10.0f, 0.2f, 40.0f);
+	glTexCoord2f(0.0f, 0.0f);	glVertex3f(10.0f, 0.2f, 40.0f);
+	glTexCoord2f(1.0f, 0.0f);	glVertex3f(10.0f, 0.2f, 10.0f);
 	glEnd();
 	glDisable(GL_TEXTURE_2D);
 	t->~Texture();
