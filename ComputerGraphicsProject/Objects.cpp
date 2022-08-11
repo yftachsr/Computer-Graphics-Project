@@ -32,7 +32,7 @@ void drawPhoto() {
 void Objects::drawObjects() {
 	Table* b = new Table(10, 2, "woodenTexture.jpg");//create table object to be display
 	b->drawTable(5, 0, 20, true);//draw the table object
-	Refrigerator* r = new Refrigerator(30, 1, -38);//draw the refrigerator
+	Refrigerator* r = new Refrigerator(37, 1, -32);//draw the refrigerator
 	r->draw();//draw the Refrigerator
 	drawPhoto();//draw photo
 	drawCarrpet();//draw carrpet

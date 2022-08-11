@@ -10,6 +10,5 @@ private:
 public: 
 	Wall(float, float, std::string);
 	void draw();
-	~Wall();
 };
 

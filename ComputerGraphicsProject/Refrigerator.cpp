@@ -19,7 +19,7 @@ void Refrigerator::draw() {
 
 	glPushMatrix();
 	glTranslated(x, y, z);
-	glRotated(-90, 0, 1, 0);
+	glRotated(180, 0, 1, 0);
 
 	glColor3f(0.75, 0.75, 0.75);
 	glPushMatrix();

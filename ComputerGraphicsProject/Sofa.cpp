@@ -9,35 +9,18 @@ void Sofa::draw() {
 	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
-	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess * 128.0f);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess );
 
 	glPushMatrix();
 	glTranslated(-26, 0, 18);
 	glScaled(0.75,0.75,0.65);
 	glRotated(30, 0, 1, 0);
 	glColor3f(0.6f, 0.2f, 0.3f);
+	
+	glColor3f(0.6164,0.5929, 0.6509);
 	legs();
 
-	//base
-	glPushMatrix();
-	glScaled(4.7, 0.5, 6.5);
-	glTranslated(-2, 6, 2.3);
-	glutSolidCube(5);
-	//buttom pillow
-	glScaled(0.7, 1.3, 1.2);
-	glTranslated(0, 4, 0);
-	glutSolidTorus(2, 2, 20, 20); 
-	glPopMatrix();
-	
-	//back pillow
-	glPushMatrix();
-	glRotated(20, 0, 0, 1);
-	glRotated(90, 0, 1, 0);
-	glScaled(3.5, 2.4, 0.65);
-	glTranslated(-4.25, 8, -15);
-	
-	glutSolidTorus(2, 2, 20, 20);
-	glPopMatrix();
+	glColor3f(0.6542, 0.3542, 0.3542);
 	//side 1
 	glPushMatrix();
 	glScaled(4.7, 2.6, 0.5);
@@ -53,6 +36,30 @@ void Sofa::draw() {
 	glScaled(0.5, 3, 6.455);
 	glTranslated(-40, 3.2, 2.33);
 	glutSolidCube(5);
+	glPopMatrix();
+
+	//base
+	glPushMatrix();
+	glScaled(4.7, 0.5, 6.5);
+	glTranslated(-2, 6, 2.3);
+	glutSolidCube(5);
+
+	glColor3f(0.6f, 0.2f, 0.3f);
+	//glColor3f(0.464843, 0.533333, 0.59765);
+	//buttom pillow
+	glScaled(0.7, 1.3, 1.2);
+	glTranslated(0, 4, 0);
+	glutSolidTorus(2, 2, 20, 20); 
+	glPopMatrix();
+	
+	//back pillow
+	glPushMatrix();
+	glRotated(20, 0, 0, 1);
+	glRotated(90, 0, 1, 0);
+	glScaled(3.5, 2.4, 0.65);
+	glTranslated(-4.25, 8, -15);
+	
+	glutSolidTorus(2, 2, 20, 20);
 	glPopMatrix();
 
 	glPopMatrix();

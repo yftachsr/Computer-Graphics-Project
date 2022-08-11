@@ -105,7 +105,7 @@ void Menu::drawTextBox() {
 //help function to drawTextBox - draw the strings to be print
 void Menu::TextBox(std::string description) {
 	if (drawTextBool) {
-		glColor3f(0.2f, 0.5f, 0.2f);
+		glColor3f(0.2f, 0.2f, 0.2f);
 		glRasterPos2f(-0.5, 0.5);
 		for (int i = 0; i < description.length(); i++) {//draw string to be display to user screen
 			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, description[i]);

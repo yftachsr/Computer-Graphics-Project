@@ -10,7 +10,7 @@
 #include "Menu.h"
 #include <math.h>
 
-#define WINDOW_SIZE_X 800
+#define WINDOW_SIZE_X 1000
 #define WINDOW_SIZE_Y 600
 
 class Scene {
