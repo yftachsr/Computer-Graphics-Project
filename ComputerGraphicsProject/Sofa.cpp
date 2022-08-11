@@ -2,6 +2,14 @@
 
 
 void Sofa::draw() {
+	GLfloat specular[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+	GLfloat diffuse[] = { 0.50754f, 0.50754f, 0.50754f, 1.0f };
+	GLfloat ambient[] = { 0.19225f , 0.19225f, 0.19225f, 1.0f };
+	GLfloat shininess = 0.0f;
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse);
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular);
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess * 128.0f);
 
 	glPushMatrix();
 	glTranslated(-26, 0, 18);
